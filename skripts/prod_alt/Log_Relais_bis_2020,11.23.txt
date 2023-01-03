@@ -1,0 +1,311 @@
+2020.11.22 10:07:10  Logdatei für Schaltvorgänge der Relais initialisiert
+------------------------------------------------------------------------------------
+2020.11.22 10:08:00 ............ neuer Tag .........................................
+2020.11.22 10:08:00 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.22 10:16:52 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.22 10:23:31 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.22 10:41:37 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.22 10:41:39 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.22 10:49:51 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.22 10:51:30 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.22 11:10:41 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.22 11:23:54 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.22 11:37:03 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.22 11:37:05 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.22 12:05:22 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.22 12:25:09 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.22 12:50:44 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.22 13:45:07 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.22 14:06:09 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.22 14:11:08 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.22 14:29:13 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.22 14:29:15 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.22 14:59:24 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.22 15:57:06 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.22 16:15:13 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.22 17:25:34 2020.11.22 17:25:34 ENDE Entladesteuerung V1.5 build 2020.11.21 buster mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.22 17:25:44 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.22 21:32:10 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.22 22:03:24 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 01:04:58 ............ neuer Tag .........................................
+2020.11.23 01:04:58 2020.11.23 01:04:58 ENDE Entladesteuerung V1.5 build 2020.11.21 buster mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 01:05:34 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 01:05:52 2020.11.23 01:05:52 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 01:05:52 2020.11.23 01:05:52 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 01:47:16 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 01:47:37  ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 01:47:37  mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 02:08:03 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 02:08:31 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 02:08:31 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 02:19:06 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 02:19:25 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 02:19:25 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 02:23:43 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 02:24:00 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 02:24:00 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 02:24:40 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 03:38:03 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.23 04:09:17 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 04:45:28 Kessel Nachttarif-Ladung               HK2 GPIO 26 eingeschaltet             
+2020.11.23 04:45:29 Boiler Nachttarif-Ladung               BK1 GPIO 19 eingeschaltet             
+2020.11.23 05:54:30 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 05:56:10 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.23 07:17:19 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:17:19 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 07:17:27 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:17:48 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:17:48 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 07:33:18 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:33:36 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:33:36 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 07:38:00 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:38:32 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:38:32 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 07:41:28 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:41:50 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:41:50 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 07:43:16 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:53:18 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:53:18 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 07:53:26 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:53:43 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:53:43 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 07:55:17 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:55:36 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 07:55:36 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:13:32 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:13:50 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:13:50 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:18:35 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:18:52 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:18:52 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:23:10 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:23:27 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:23:27 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:28:36 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:28:53 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:28:53 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:33:11 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:33:18 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.23 08:33:32 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:33:32 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:41:58 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:42:14 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:42:14 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:46:11 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:46:28 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:46:28 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:49:00 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:49:19 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:49:19 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:51:57 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:52:04 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 08:52:30 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:52:30 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 08:58:47 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:58:56 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.23 08:59:01 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 08:59:01 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:06:45 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:07:06 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:07:06 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:11:19 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:11:25 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 09:11:26 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.23 09:11:28 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.23 09:11:45 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:11:45 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:15:48 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:16:06 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:16:06 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:19:53 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:20:01 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 09:20:11 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:20:11 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:21:28 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:21:46 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:21:46 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:23:26 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:23:42 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:23:42 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:24:53 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:25:47 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:25:53 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.23 09:27:01 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:27:17 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:27:17 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:27:43 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:28:10 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:28:10 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 09:29:05 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 09:44:19 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 09:49:16 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.23 10:10:30 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.23 10:10:32 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 10:39:23 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 10:50:52 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.23 11:07:12 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.23 11:07:14 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 11:17:50 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:17:50 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 11:21:59 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:22:19 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:22:19 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 11:23:22 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:27:46 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:27:46 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 11:31:12 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:31:32 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:31:32 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 11:34:00 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:34:17 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:34:17 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 11:40:22 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:40:39 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:40:39 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 11:51:11 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:51:11 2020.11.23 11:51:11 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+replace() argument 2 must be str, not builtin_function_or_method
+2020.11.23 11:52:20 ............ neuer Tag .........................................
+2020.11.23 11:52:20 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:52:20 2020.11.23 11:52:20 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+replace() argument 2 must be str, not builtin_function_or_method
+2020.11.23 11:53:24 ............ neuer Tag .........................................
+2020.11.23 11:53:24 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:53:24 2020.11.23 11:53:24 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+replace() argument 2 must be str, not builtin_function_or_method
+2020.11.23 11:55:25 ............ neuer Tag .........................................
+2020.11.23 11:55:25 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:55:25 2020.11.23 11:55:25 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+replace() argument 2 must be str, not builtin_function_or_method
+2020.11.23 11:56:24 ............ neuer Tag .........................................
+2020.11.23 11:56:24 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:56:24 2020.11.23 11:56:24 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+replace() takes at least 2 arguments (1 given)
+2020.11.23 11:59:23 ............ neuer Tag .........................................
+2020.11.23 11:59:23 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 11:59:23 2020.11.23 11:59:23 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+replace() argument 2 must be str, not builtin_function_or_method
+2020.11.23 12:00:01 ............ neuer Tag .........................................
+2020.11.23 12:00:01 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:00:01 2020.11.23 12:00:01 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+replace() takes at least 2 arguments (1 given)
+2020.11.23 12:00:54 ............ neuer Tag .........................................
+2020.11.23 12:00:54 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:00:54 2020.11.23 12:00:54 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+replace() argument 2 must be str, not int
+2020.11.23 12:01:18 ............ neuer Tag .........................................
+2020.11.23 12:01:18 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:01:35 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:01:35 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 12:02:14 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:02:21 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 12:02:23 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.23 12:04:52 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:08:23 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:12:19 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:12:27 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 12:12:36 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:12:36 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 12:15:32 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:16:29 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:16:39 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:16:39 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 12:18:13 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:18:44 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:18:44 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 12:18:54 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:21:06 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:21:06 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 12:21:15 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:22:15 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.23 12:24:41 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:24:41 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 12:27:43 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:27:49 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:27:49 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 12:28:45 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:29:11 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:29:11 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 12:29:19 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 12:51:36 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 13:34:09 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.23 13:58:30 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 14:06:42 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.23 14:24:40 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.23 14:24:42 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 14:46:13 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 15:06:10 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 15:48:10 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 15:48:16 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 15:48:17 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.23 15:48:18 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 15:48:19 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.23 15:49:08 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 15:49:08 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 15:49:17 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 16:38:36 2020.11.23 16:38:36 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit AssertionError : 
+('Fehler im Skript Func_Sens.Temp.LesBus', '10 Iterationen überschritten')
+2020.11.23 16:39:51 ............ neuer Tag .........................................
+2020.11.23 16:39:51 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 16:39:55 2020.11.23 16:39:55 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+[Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-030997790e32/w1_slave'
+2020.11.23 16:53:12 ............ neuer Tag .........................................
+2020.11.23 16:53:12 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 16:53:19 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 16:53:20 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.23 16:53:21 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 16:53:22 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.23 16:54:47 ENDE Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 16:54:47 mit KeyboardInterrupt (CTRL+C oder Strg+C)
+2020.11.23 16:54:54 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 16:55:11 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 16:55:11 mit AssertionError : 
+('Fehler im Skript Func_Sens.Temp.LesBus', '10 Iterationen überschritten')
+2020.11.23 16:59:42 ............ neuer Tag .........................................
+2020.11.23 16:59:42 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 16:59:45 2020.11.23 16:59:45 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+[Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 17:06:38 ............ neuer Tag .........................................
+2020.11.23 17:06:38 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 17:06:41 2020.11.23 17:06:41 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+[Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 17:10:29 ............ neuer Tag .........................................
+2020.11.23 17:10:29 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 17:10:32 2020.11.23 17:10:32 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+[Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 17:17:31 ............ neuer Tag .........................................
+2020.11.23 17:17:31 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 17:17:34 2020.11.23 17:17:34 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+[Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 17:19:38 ............ neuer Tag .........................................
+2020.11.23 17:19:38 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 17:19:41 2020.11.23 17:19:41 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+[Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 17:22:51 ............ neuer Tag .........................................
+2020.11.23 17:22:51 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 17:22:54 2020.11.23 17:22:54 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+[Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 21:06:26 ............ neuer Tag .........................................
+2020.11.23 21:06:26 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 21:06:29 2020.11.23 21:06:29 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster mit Exception : 
+[Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 21:10:23 ............ neuer Tag .........................................
+2020.11.23 21:10:23 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 21:10:26 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 21:10:26 mit Exception : : 
+2020.11.23 21:10:26 [Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 21:11:27 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 21:11:30 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 21:11:30 mit Exception : : 
+2020.11.23 21:11:30 [Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 21:11:48 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 21:11:52 ABBRUCH Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 21:11:52 mit Exception : : 
+2020.11.23 21:11:52 [Errno 2] No such file or directory: '/sys/bus/w1/devices/w1_bus_master1/28-0309977914a4/w1_slave'
+2020.11.23 21:13:13 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.23 21:13:20 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.23 21:13:21 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.23 21:13:22 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.23 21:13:23 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             

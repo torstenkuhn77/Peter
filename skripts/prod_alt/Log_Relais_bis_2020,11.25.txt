@@ -1,0 +1,36 @@
+2020.11.25 07:06:17  Logdatei für Schaltvorgänge der Relais initialisiert
+------------------------------------------------------------------------------------
+2020.11.25 09:26:49 ............ neuer Tag .........................................
+2020.11.25 09:26:49 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.25 09:26:56 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 09:26:57 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.25 09:26:58 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.25 09:26:59 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.25 09:31:08 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.25 09:40:16 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 09:43:36 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.25 10:13:14 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.25 10:13:16 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.25 10:34:23 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 10:39:21 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.25 10:57:34 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.25 10:57:36 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.25 11:22:14 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 11:28:52 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.25 11:46:57 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.25 11:46:59 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.25 12:16:23 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 12:42:45 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.25 13:06:32 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 13:16:27 Kessel Direkt-Ladung                   DK2 GPIO 26 eingeschaltet             
+2020.11.25 13:29:36 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.25 13:29:38 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.25 13:33:16 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 13:34:54 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.25 13:39:28 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 13:41:07 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.25 14:05:48 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.25 16:37:54 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.25 16:45:06 Neustart Entladesteuerung V1.5 build 2020.11.21 buster
+2020.11.25 17:46:47 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 eingeschaltet             
+2020.11.25 17:48:01 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             

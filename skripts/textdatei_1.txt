@@ -1,0 +1,3 @@
+Dateiinhalt gelöscht und initialisiert
+2020.02.20 09:44:12 ............ neuer Tag ...........
+2020.02.20 09:44:12 Versuch mit korrekter Pfadangabe

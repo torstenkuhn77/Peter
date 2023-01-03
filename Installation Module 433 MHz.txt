@@ -1,0 +1,280 @@
+Installation Funkmodule 433 MHz
+
+Verkabelung :
+
+	Empfänger					Sender
+	XY-MK-5V					XY-FST FS1000A
+
+ANT	blau
+VCC (+)	orange						orange
+GND (-)	braun						braun
+DAT	gelb	--> PIN12/GPIO18  PIN11 / GPIO17 <--	weiß
+
+
+Installation Pilight :
+Anleitung :  https://manual.pilight.org/installation.html
+Ergebnis  :
+pi@RPi-buster:~ $ sudo su
+root@RPi-buster:/home/pi# echo "deb http://apt.pilight.org/ stable main" > /etc/apt/sources.list.d/pilight.list
+root@RPi-buster:/home/pi# wget -O - http://apt.pilight.org/pilight.key | apt-key add -
+--2021-03-02 10:47:57--  http://apt.pilight.org/pilight.key
+Auflösen des Hostnamens apt.pilight.org (apt.pilight.org)… 173.249.23.183
+Verbindungsaufbau zu apt.pilight.org (apt.pilight.org)|173.249.23.183|:80 … verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
+Platz: https://apt.pilight.org/pilight.key [folgend]
+--2021-03-02 10:47:57--  https://apt.pilight.org/pilight.key
+Verbindungsaufbau zu apt.pilight.org (apt.pilight.org)|173.249.23.183|:443 … verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: 3079 (3,0K) [application/octet-stream]
+Wird in »STDOUT« gespeichert.
+
+-                                100%[========================================================>]   3,01K  --.-KB/s    in 0s      
+
+2021-03-02 10:47:57 (88,1 MB/s) - auf die Standardausgabe geschrieben [3079/3079]
+
+OK
+root@RPi-buster:/home/pi# apt-get update
+Holen:2 http://archive.raspberrypi.org/debian buster InRelease [32,8 kB]            
+Holen:3 http://raspbian.raspberrypi.org/raspbian buster InRelease [15,0 kB]         
+Holen:1 https://apt.pilight.org stable InRelease [5.415 B]            
+Holen:4 http://raspbian.raspberrypi.org/raspbian buster/main armhf Packages [13,0 MB]
+Holen:5 http://archive.raspberrypi.org/debian buster/main armhf Packages [364 kB]
+Holen:6 https://apt.pilight.org stable/main armhf Packages [11,0 kB]
+Holen:7 http://raspbian.raspberrypi.org/raspbian buster/non-free armhf Packages [104 kB]                                         
+Es wurden 13,5 MB in 13 s geholt (1.004 kB/s).                                                                                   
+Paketlisten werden gelesen... Fertig
+root@RPi-buster:/home/pi# cd /tmp
+root@RPi-buster:/tmp# wget http://apt.pilight.org/pool/stable/main/l/libmbedx509-0/libmbedx509-0_2.6.0-1_armhf.deb
+--2021-03-02 10:49:56--  http://apt.pilight.org/pool/stable/main/l/libmbedx509-0/libmbedx509-0_2.6.0-1_armhf.deb
+Auflösen des Hostnamens apt.pilight.org (apt.pilight.org)… 173.249.23.183
+Verbindungsaufbau zu apt.pilight.org (apt.pilight.org)|173.249.23.183|:80 … verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
+Platz: https://apt.pilight.org/pool/stable/main/l/libmbedx509-0/libmbedx509-0_2.6.0-1_armhf.deb [folgend]
+--2021-03-02 10:49:56--  https://apt.pilight.org/pool/stable/main/l/libmbedx509-0/libmbedx509-0_2.6.0-1_armhf.deb
+Verbindungsaufbau zu apt.pilight.org (apt.pilight.org)|173.249.23.183|:443 … verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: 69994 (68K) [application/octet-stream]
+Wird in »libmbedx509-0_2.6.0-1_armhf.deb« gespeichert.
+
+libmbedx509-0_2.6.0-1_armhf.deb  100%[========================================================>]  68,35K  --.-KB/s    in 0,04s   
+
+2021-03-02 10:49:56 (1,67 MB/s) - »libmbedx509-0_2.6.0-1_armhf.deb« gespeichert [69994/69994]
+
+root@RPi-buster:/tmp# wget http://apt.pilight.org/pool/stable/main/l/libmbedtls10/libmbedtls10_2.6.0-1_armhf.deb
+--2021-03-02 10:50:23--  http://apt.pilight.org/pool/stable/main/l/libmbedtls10/libmbedtls10_2.6.0-1_armhf.deb
+Auflösen des Hostnamens apt.pilight.org (apt.pilight.org)… 173.249.23.183
+Verbindungsaufbau zu apt.pilight.org (apt.pilight.org)|173.249.23.183|:80 … verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
+Platz: https://apt.pilight.org/pool/stable/main/l/libmbedtls10/libmbedtls10_2.6.0-1_armhf.deb [folgend]
+--2021-03-02 10:50:23--  https://apt.pilight.org/pool/stable/main/l/libmbedtls10/libmbedtls10_2.6.0-1_armhf.deb
+Verbindungsaufbau zu apt.pilight.org (apt.pilight.org)|173.249.23.183|:443 … verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: 99508 (97K) [application/octet-stream]
+Wird in »libmbedtls10_2.6.0-1_armhf.deb« gespeichert.
+
+libmbedtls10_2.6.0-1_armhf.deb   100%[========================================================>]  97,18K  --.-KB/s    in 0,05s   
+
+2021-03-02 10:50:23 (1,82 MB/s) - »libmbedtls10_2.6.0-1_armhf.deb« gespeichert [99508/99508]
+
+root@RPi-buster:/tmp# wget http://apt.pilight.org/pool/stable/main/l/libmbedcrypto0/libmbedcrypto0_2.6.0-1_armhf.deb
+--2021-03-02 10:50:47--  http://apt.pilight.org/pool/stable/main/l/libmbedcrypto0/libmbedcrypto0_2.6.0-1_armhf.deb
+Auflösen des Hostnamens apt.pilight.org (apt.pilight.org)… 173.249.23.183
+Verbindungsaufbau zu apt.pilight.org (apt.pilight.org)|173.249.23.183|:80 … verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
+Platz: https://apt.pilight.org/pool/stable/main/l/libmbedcrypto0/libmbedcrypto0_2.6.0-1_armhf.deb [folgend]
+--2021-03-02 10:50:47--  https://apt.pilight.org/pool/stable/main/l/libmbedcrypto0/libmbedcrypto0_2.6.0-1_armhf.deb
+Verbindungsaufbau zu apt.pilight.org (apt.pilight.org)|173.249.23.183|:443 … verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: 157480 (154K) [application/octet-stream]
+Wird in »libmbedcrypto0_2.6.0-1_armhf.deb« gespeichert.
+
+libmbedcrypto0_2.6.0-1_armhf.deb 100%[========================================================>] 153,79K  --.-KB/s    in 0,1s    
+
+2021-03-02 10:50:47 (1,38 MB/s) - »libmbedcrypto0_2.6.0-1_armhf.deb« gespeichert [157480/157480]
+
+root@RPi-buster:/tmp# dpkg -i libmbed*.deb
+Vormals nicht ausgewähltes Paket libmbedcrypto0:armhf wird gewählt.
+(Lese Datenbank ... 94452 Dateien und Verzeichnisse sind derzeit installiert.)
+Vorbereitung zum Entpacken von libmbedcrypto0_2.6.0-1_armhf.deb ...
+Entpacken von libmbedcrypto0:armhf (2.6.0-1) ...
+Vormals nicht ausgewähltes Paket libmbedtls10:armhf wird gewählt.
+Vorbereitung zum Entpacken von libmbedtls10_2.6.0-1_armhf.deb ...
+Entpacken von libmbedtls10:armhf (2.6.0-1) ...
+Vormals nicht ausgewähltes Paket libmbedx509-0:armhf wird gewählt.
+Vorbereitung zum Entpacken von libmbedx509-0_2.6.0-1_armhf.deb ...
+Entpacken von libmbedx509-0:armhf (2.6.0-1) ...
+libmbedcrypto0:armhf (2.6.0-1) wird eingerichtet ...
+libmbedx509-0:armhf (2.6.0-1) wird eingerichtet ...
+libmbedtls10:armhf (2.6.0-1) wird eingerichtet ...
+Trigger für libc-bin (2.28-10+rpi1) werden verarbeitet ...
+root@RPi-buster:/tmp# apt-get install pilight
+Paketlisten werden gelesen... Fertig
+Abhängigkeitsbaum wird aufgebaut.       
+Statusinformationen werden eingelesen.... Fertig
+Die folgenden zusätzlichen Pakete werden installiert:
+  libpcap0.8 libwiringx pilight-webgui
+Vorgeschlagene Pakete:
+  libwiringx-dev php5-cgi pilight-firmware
+Die folgenden NEUEN Pakete werden installiert:
+  libpcap0.8 libwiringx pilight pilight-webgui
+0 aktualisiert, 4 neu installiert, 0 zu entfernen und 156 nicht aktualisiert.
+Es müssen 1.648 kB an Archiven heruntergeladen werden.
+Nach dieser Operation werden 831 kB Plattenplatz zusätzlich benutzt.
+Möchten Sie fortfahren? [J/n] j
+Holen:4 http://mirror.solnet.ch/raspbian/raspbian buster/main armhf libpcap0.8 armhf 1.8.1-6 [124 kB]
+Holen:1 https://apt.pilight.org stable/main armhf libwiringx armhf 2.0-243-g9af7ace [75,3 kB]
+Holen:2 https://apt.pilight.org stable/main armhf pilight-webgui armhf 8.4 [230 kB]
+Holen:3 https://apt.pilight.org stable/main armhf pilight armhf 8.1.5 [1.218 kB]
+Es wurden 1.648 kB in 1 s geholt (1.395 kB/s).
+Vormals nicht ausgewähltes Paket libpcap0.8:armhf wird gewählt.
+(Lese Datenbank ... 94470 Dateien und Verzeichnisse sind derzeit installiert.)
+Vorbereitung zum Entpacken von .../libpcap0.8_1.8.1-6_armhf.deb ...
+Entpacken von libpcap0.8:armhf (1.8.1-6) ...
+Vormals nicht ausgewähltes Paket libwiringx wird gewählt.
+Vorbereitung zum Entpacken von .../libwiringx_2.0-243-g9af7ace_armhf.deb ...
+Entpacken von libwiringx (2.0-243-g9af7ace) ...
+Vormals nicht ausgewähltes Paket pilight-webgui wird gewählt.
+Vorbereitung zum Entpacken von .../pilight-webgui_8.4_armhf.deb ...
+Entpacken von pilight-webgui (8.4) ...
+Vormals nicht ausgewähltes Paket pilight wird gewählt.
+Vorbereitung zum Entpacken von .../pilight_8.1.5_armhf.deb ...
+Entpacken von pilight (8.1.5) ...
+libpcap0.8:armhf (1.8.1-6) wird eingerichtet ...
+libwiringx (2.0-243-g9af7ace) wird eingerichtet ...
+pilight (8.1.5) wird eingerichtet ...
+pilight-webgui (8.4) wird eingerichtet ...
+Trigger für libc-bin (2.28-10+rpi1) werden verarbeitet ...
+Trigger für systemd (241-7~deb10u4+rpi1) werden verarbeitet ...
+Trigger für man-db (2.8.5-2) werden verarbeitet ...
+root@RPi-buster:/tmp# service pilight start
+root@RPi-buster:/tmp# service pilight stop
+root@RPi-buster:/tmp# 
+--> Installation abgeschlossen
+
+Testen der Installation
+
+pi@RPi-buster:~ $ sudo service pilight start
+pi@RPi-buster:~ $ pilight-receive
+(/home/pilight/source/daemon-dev/receive.c #158) [Dec 02 10:40:28:439464] NOTICE: no pilight ssdp connections found
+
+Lösung beschrieben in https://www.ramschkasten.de/pilight-receive-notice-no-pilight-ssdp-connections-found/2018/11/12/
+
+// Anpassung pilight config
+
+Die Datei ist zu finden unter : sudo nano /etc/pilight/config.json  und enthält :
+{
+	"devices": {},
+	"rules": {},
+	"gui": {},
+	"settings": {
+		"log-level": 6,
+		"pid-file": "/var/run/pilight.pid",
+		"log-file": "/var/log/pilight.log",
+		"standalone": 0,
+		"webserver-enable": 1,
+		"webserver-root": "/usr/local/share/pilight/webgui",
+		"webserver-http-port": 80,
+		"webserver-https-port": 5002,
+		"webserver-cache": 1,
+		"whitelist": "",
+		"gpio-platform": "raspberrypi4"
+	},
+	"hardware": {
+			"433gpio": {
+				"sender": 1,
+				"receiver": 1
+			}
+	},
+	"registry": {
+		"webserver": {
+			"ssl": {
+				"certificate": {
+					"location": "/etc/pilight/pilight.pem"
+				}
+			}
+		},
+		"pilight": {
+			"version": {
+				"current": "8.1.5"
+			}
+		}
+	}
+}
+
+// Starten von pilight als daemon
+
+sudo pilight-daemon -D
+
+Es kommen eine Reihe von Debug Ausgaben in der letzen Zeile muss ein "socket write succeed: {"status":"success"} stehen 
+
+// Anpassung IP Tabellen
+
+sudo nano /etc/network/iptables
+
+*filter
+:INPUT DROP [159:12505]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [140:13492]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
+-A INPUT -s 127.0.0.1 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+COMMIT
+
+// IP Parameter 
+
+sudo nano /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+
+// ENDE
+
+weiter mit:  http://raspberry.tips/hausautomatisierung/raspberry-pi-steuern-von-funksteckdosen-und-sensoren-mit-pilight
+
+// Nützliche Kommandos
+
+1. Finden des pilight daemons unter den laufenden Prozessen
+
+pgrep -l pilight*
+
+Ausgabe:	4711 pilight-daemon 	Anm. die Nummer ist die Process Id (PID)
+
+2. Beenden des daemon
+
+sudo kill -11 4711		(aslo über die PID aus pgrep wird der Prozess identifiziert)
+
+
+Ansteuerung Rev Telecontrol 	https://wiki.pilight.org/rev_switch_old
+
+Codes https://forum-raspberrypi.de/attachment/29771-rev008341-codes-pdf/
+
+ 6.2.3 Steckdosen Fernbedienung Rev, Modell 008341 (A-D umschaltbar)
+CODE 	Dose 		Ein/aus
+A 1FFF 	1 	1FF* 	ein 00010
+B F1FF* 2 	F1F 	aus 00001
+C FF1F 	3 	FF1
+D FFF1
+* Internet ein/aus
+
+Ein Beispiel: Code A, Dose 1 einschalten hat den Code 1FFF 1FF 00010
+
+Das Protokol gibt die Basis (350 us), das Sync-Bit (1 High, 31 Low), eine 0 (1x350 High, 3x350 Low),
+eine 1 (3x350 High, 1x350 Low) an. 
+
+Timing: Basis 350us
+
+Pegel
+Kurz 			Lang 
+[us] 	Teile 	[us] 	Teile
+0 300 	1		1000 	3
+1 300 	1    	1000 	3
+
+Protocol
+{350, {1, 31}, 
+{1, 3}, {3, 1}, 
+false}, protocol 1
+
+Interessanter post zu den REV switches	https://forum.pilight.org/showthread.php?tid=2037 

@@ -1,0 +1,16 @@
+{
+    "Konfiguration" : {
+        "Tagsteuerung" : {
+            "DTvon" : "08:30",
+            "DTbis" : "16:30" 
+        },
+        "Nachtsteuerung" : {
+            "NAvon" : "22:45",
+            "NAbis" : "05:45" 
+        },
+        "Boilertemperatur" : {
+            "BTmin" : 45.0,
+            "BTmax" : 65.0
+        }    
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "Parameter" : {
+	
+	"Raumheizung"   :        "ein" ,
+	
+	"Warmwasser"    :        "ein" ,
+	
+	"Sonstige"      :        "ein" ,
+		
+        "Tagsteuerung"  :     {
+            "DTvon" 	:	 "08:30",
+            "DTbis" 	:	 "16:30" 
+                              },
+	
+	"boostZeit"     :     {
+            "von" 	:	 "09:00",
+            "bis" 	:	 "15:30" 
+                              },
+
+	"NT_Zeit"       :     {
+            "Start" 	:	 "22:00",
+            "Ende" 	:	 "06:00" 
+                              },
+	
+	"NT_Aufl_Boiler":     {
+            "BNvon" 	:	 "00:05",
+            "BNbis" 	:	 "01:45" 
+                              },
+
+	"NT_Aufl_Kessel":     {
+            "KNvon" 	:	 "02:15",
+            "KNbis" 	:	 "05:15" 
+                              },
+
+	"Raumtemperatur":     {
+            "RTmin" 	:	  18.0,
+            "RTmax" 	:	  22.5
+	                      },
+
+        "Boilertemperatur"  : {
+            "BTmin" 	: 	  45.0,
+            "BTmax" 	: 	  60.0,
+	    "BThist" 	: 	   2.0
+	                      },
+
+        "Vorlauftemperatur" : {
+            "VTmax" :		  45.0
+	                      },
+
+        "Kesseltemperatur"  : {
+            "KTmin" 	: 	  40.0,
+            "KTmax" 	: 	  75.0,
+	    "KTboost"	: 	  65.0,
+	    "KThist"	: 	   3.0			
+                              },
+
+	"Erzeugung"     :     {
+            "PVmin"     :	   0.5
+                              },
+
+        "Zyklus" :            {
+            "Sekunden" :	  44.0
+                              } 
+                      }
+}

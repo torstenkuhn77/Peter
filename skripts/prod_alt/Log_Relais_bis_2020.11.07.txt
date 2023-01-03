@@ -1,0 +1,484 @@
+2020.11.02 16:45:58  Logdatei für Schaltvorgänge der Relais initialisiert
+------------------------------------------------------------------------------------
+2020.11.02 20:53:54 ............ neuer Tag .........................................
+2020.11.02 20:53:54 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.02 20:53:55 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.02 20:53:56 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.02 20:53:57 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.02 20:54:00 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.02 23:27:12 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.02 23:27:13 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.02 23:27:14 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.02 23:27:15 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.02 23:27:18 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 00:05:48 ............ neuer Tag .........................................
+2020.11.03 00:05:48 Boiler Nachttarif-Ladung noch im Test  BK1 GPIO 19 eingeschaltet             
+2020.11.03 01:19:49 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 01:19:50 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.03 01:19:51 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 01:19:55 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 01:32:15 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.03 02:15:56 Kessel Nachttarif-Ladung noch im Test  HK2 GPIO 26 eingeschaltet             
+2020.11.03 03:54:17 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 08:49:30 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 08:49:31 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.03 08:49:32 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 08:49:33 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.03 08:49:36 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 09:27:34 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.03 09:29:53 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.03 09:33:25 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.03 09:35:14 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.03 09:37:04 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.03 09:37:58 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 09:40:42 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.03 09:44:22 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.03 09:49:50 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 09:49:51 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.03 09:51:40 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.03 10:16:24 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 10:17:19 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 10:23:00 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 10:57:12 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.03 10:57:13 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 10:57:14 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.03 10:58:45 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 11:09:37 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 11:14:13 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.03 11:44:24 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.03 11:44:26 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 12:06:26 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 12:07:21 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 12:13:45 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 12:17:24 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 12:22:47 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 12:29:13 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.03 12:56:36 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.03 12:56:38 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 12:57:37 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 13:07:39 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 13:12:44 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 13:14:12 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 13:15:06 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 13:18:45 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 13:34:17 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 13:37:02 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 13:37:56 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 13:38:51 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 13:43:25 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 13:45:09 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 13:45:15 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 13:46:10 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 13:47:59 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 13:55:14 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.03 14:21:42 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.03 14:21:44 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 14:22:43 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 14:25:27 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 14:32:46 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 14:36:25 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 14:50:07 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 14:53:46 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 14:57:26 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 15:00:10 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 15:03:49 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.03 15:03:50 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 15:03:51 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.03 15:04:27 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 15:06:16 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 15:10:50 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 15:18:09 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 15:20:47 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 15:21:48 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 15:25:27 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.03 15:26:22 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.03 15:39:05 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.03 16:07:07 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 21:04:53 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.03 21:04:54 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.03 21:04:55 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.03 21:04:56 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.03 21:04:59 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 00:06:31 ............ neuer Tag .........................................
+2020.11.04 00:06:31 Boiler Nachttarif-Ladung noch im Test  BK1 GPIO 19 eingeschaltet             
+2020.11.04 01:45:16 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.04 01:55:32 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 01:55:33 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.04 01:55:34 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 01:55:35 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.04 01:55:38 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 02:15:21 Kessel Nachttarif-Ladung noch im Test  HK2 GPIO 26 eingeschaltet             
+2020.11.04 03:39:18 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 06:50:33 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 06:50:34 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.04 06:50:35 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 06:50:36 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.04 06:50:39 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 08:37:23 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 08:37:24 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.04 08:37:25 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 08:37:26 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.04 08:37:29 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 08:52:49 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 08:54:22 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.04 08:54:28 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 08:55:23 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 08:59:52 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 09:01:37 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 09:19:46 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 09:21:19 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.04 09:21:20 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.04 09:21:25 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 09:24:10 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 09:28:38 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 09:28:39 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.04 09:31:56 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.04 09:32:02 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 09:33:47 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.04 09:37:27 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.04 09:38:21 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 09:40:00 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.04 09:43:41 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.04 09:43:46 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 09:46:25 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.04 09:46:30 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 10:04:43 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 10:08:07 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 10:11:25 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 10:26:15 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 10:32:51 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 10:36:05 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.04 10:59:08 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.04 10:59:10 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 11:15:54 Neustart
+2020.11.04 11:18:36 Neustart
+2020.11.04 11:26:54 Neustart
+2020.11.04 11:28:42 Neustart
+2020.11.04 11:36:31 Neustart
+2020.11.04 11:38:02 Neustart Programm ... 
+2020.11.04 11:39:24 Neustart
+2020.11.04 11:41:02 
+2020.11.04 11:47:23 
+2020.11.04 11:54:32 Neustart Entladesteuerung ... 
+2020.11.04 11:57:45 Neustart Entladesteuerung ... 
+2020.11.04 11:58:41 Neustart Entladesteuerung ... 
+2020.11.04 12:00:56 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 12:00:58 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.04 12:24:56 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.04 12:24:58 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 12:25:57 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 12:34:11 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 12:37:51 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 12:46:05 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 12:56:10 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 13:03:29 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 13:04:24 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 13:07:09 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 13:13:39 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 13:16:42 Neustart Entladesteuerung ... 
+2020.11.04 13:20:07 Neustart Entladesteuerung ... 
+2020.11.04 13:24:05 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 13:24:06 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.04 13:24:07 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 13:24:08 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.04 13:27:12 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.04 13:28:55 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 13:53:33 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.04 13:53:35 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 13:54:34 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 13:55:29 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 14:18:22 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 14:22:57 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 14:38:31 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 14:48:29 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 14:48:35 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 14:55:06 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.04 15:19:49 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.04 15:19:51 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 15:20:50 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 15:21:45 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 15:23:34 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 15:25:24 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 15:26:19 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.04 15:27:14 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 15:32:38 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 15:52:44 Neustart Entladesteuerung ... 
+2020.11.04 16:04:06 Neustart Entladesteuerung ... 
+2020.11.04 16:06:31 Neustart Entladesteuerung V1.1 vom 03.02.2020
+2020.11.04 16:10:18 Neustart Entladesteuerung V1.1 vom 03.02.2020
+2020.11.04 16:10:49 Neustart Entladesteuerung V1.1 vom 03.02.2020
+2020.11.04 16:16:09 Neustart Entladesteuerung V1.1 vom 03.02.2020
+2020.11.04 16:19:23 Neustart Entladesteuerung V1.1 vom 03.02.2020
+2020.11.04 16:21:06 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 16:22:18 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 16:23:34 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 16:29:29 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 16:31:49 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 16:34:05 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 16:34:48 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 17:00:38 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 17:02:09 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 17:02:28 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.04 17:02:29 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.04 17:02:30 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.04 17:02:31 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.04 17:02:34 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.04 17:51:41 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.04 18:46:39 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.05 00:06:17 ............ neuer Tag .........................................
+2020.11.05 00:06:17 Boiler Nachttarif-Ladung noch im Test  BK1 GPIO 19 eingeschaltet             
+2020.11.05 00:09:03 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.05 00:09:09 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 00:09:10 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.05 00:09:11 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.05 00:09:15 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 00:10:46 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.05 01:39:56 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.05 02:15:50 Kessel Nachttarif-Ladung noch im Test  HK2 GPIO 26 eingeschaltet             
+2020.11.05 03:45:35 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.05 07:33:30 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.05 07:33:59 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 07:34:00 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.05 07:34:01 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.05 07:34:02 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.05 07:34:05 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 08:21:54 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.05 08:37:46 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.05 08:47:00 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 08:48:49 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 08:51:34 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 08:52:29 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 08:54:19 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 08:59:47 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 09:00:37 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.05 09:03:27 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 09:04:17 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.05 09:04:22 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 09:05:10 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 09:06:49 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.05 09:06:50 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.05 09:06:55 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 09:09:35 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.05 09:09:40 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 09:16:03 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 09:19:43 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 09:25:06 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 09:31:47 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 09:36:44 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 09:43:19 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 09:46:37 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 10:12:48 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.05 10:13:06 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 10:13:07 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.05 10:13:08 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.05 10:13:09 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.05 10:14:03 Kessel Direkt-Ladung     noch im Test  DK2 GPIO 26 eingeschaltet             
+2020.11.05 10:14:07 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 10:35:27 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.05 10:35:29 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.05 10:36:27 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 10:39:12 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 10:40:07 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 10:46:30 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 10:47:25 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 10:51:04 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:02:02 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:03:52 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:04:46 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:05:41 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:06:36 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:07:31 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:10:16 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:11:10 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:11:59 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 11:12:05 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:15:23 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:17:02 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:18:41 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:25:16 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:26:55 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:30:13 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:31:46 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.05 11:33:42 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:37:21 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:43:45 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 11:51:03 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 11:54:42 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 12:29:26 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 12:33:05 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 12:36:44 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 12:39:29 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 12:43:08 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 12:46:47 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 12:50:26 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 12:52:16 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 12:55:56 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 12:57:45 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 13:01:25 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 13:04:59 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.05 13:08:43 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 13:09:33 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.05 13:10:27 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 13:13:45 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.05 13:13:46 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.05 13:19:14 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 13:19:15 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.05 13:24:10 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.05 13:35:09 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.05 13:35:14 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 13:41:33 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.05 13:42:33 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 13:48:56 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 13:51:41 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 13:52:36 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 13:55:20 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 13:58:05 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:01:44 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 14:11:47 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:15:26 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 14:16:21 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:17:16 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 14:18:10 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:22:44 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 14:23:39 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:24:34 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 14:33:42 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:36:26 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 14:41:55 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:45:34 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 14:55:37 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:56:32 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 14:57:27 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 14:59:17 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 15:02:01 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 15:03:51 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 15:04:45 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 15:05:40 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 15:06:35 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 15:07:30 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 15:16:35 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.05 15:18:14 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.05 15:33:52 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.05 15:36:36 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.05 15:48:22 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 00:05:40 ............ neuer Tag .........................................
+2020.11.06 00:05:40 Boiler Nachttarif-Ladung noch im Test  BK1 GPIO 19 eingeschaltet             
+2020.11.06 01:24:35 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.06 01:31:37 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.06 01:31:58 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.06 01:32:45 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.06 01:33:37 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.06 01:33:44 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 01:33:45 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 01:33:46 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.06 01:33:47 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.06 01:33:50 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 01:35:16 Neustart Entladesteuerung V1.1 build 04.02.2020
+2020.11.06 01:36:52 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 02:15:44 Kessel Nachttarif-Ladung noch im Test  HK2 GPIO 26 eingeschaltet             
+2020.11.06 03:46:09 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.06 06:30:15 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 10:55:17 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 10:55:18 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.06 10:55:19 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.06 10:55:22 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 11:52:55 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 11:53:03 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.06 11:53:08 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 12:00:16 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 12:00:17 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 12:03:34 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.06 12:03:35 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.06 12:07:13 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 12:07:14 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 12:12:10 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.06 12:12:11 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.06 12:17:39 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 12:17:40 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 12:19:18 Tagbetrieb                             WK1 GPIO 12 eingeschaltet             
+2020.11.06 12:19:19 boost (Mischer öffnen)                 WK2 GPIO 16 eingeschaltet             
+2020.11.06 12:20:14 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 12:20:19 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 12:28:32 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 12:29:27 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 12:36:46 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 12:39:30 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 12:42:15 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 12:47:44 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 12:54:08 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 12:55:03 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 12:55:57 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 13:00:31 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 13:06:00 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 13:06:55 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 13:35:15 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 13:43:28 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 13:44:23 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:02:39 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:03:34 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:12:42 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:13:36 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:15:26 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:21:50 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:22:45 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:30:03 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:30:58 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:31:53 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:33:43 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:34:37 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:35:32 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:44:40 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:48:20 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:49:15 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 14:51:04 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 14:54:43 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 15:07:31 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 15:08:26 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 15:09:21 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 15:10:16 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 15:11:10 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 15:18:29 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 15:22:08 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 15:23:03 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 15:34:01 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 15:35:50 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 15:37:40 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 15:38:35 Garten                                 GK1 GPIO 21 eingeschaltet             
+2020.11.06 15:39:30 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 16:08:38 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 17:28:55 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 17:29:02 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 17:29:03 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 17:29:04 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.06 17:29:05 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.06 17:29:08 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 17:29:46 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 17:29:53 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 17:29:54 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 17:29:55 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.06 17:29:56 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.06 17:29:59 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 17:30:53 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 17:32:19 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 17:33:00 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 17:35:04 Neustart Entladesteuerung V1.1 build 04.11.2020                                                                    
+2020.11.06 17:35:54 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 17:36:00 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.06 17:36:01 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.06 17:36:02 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.06 17:36:03 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.06 17:36:06 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.06 17:43:53 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.06 17:45:45 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.07 00:01:36 ............ neuer Tag .........................................
+2020.11.07 00:01:36 Tagbetrieb                             WK1 GPIO 12 ausgeschaltet             
+2020.11.07 00:01:37 boost (Mischer öffnen)                 WK2 GPIO 16 ausgeschaltet             
+2020.11.07 00:01:38 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.07 00:01:40 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.07 00:01:43 Garten                                 GK1 GPIO 21 ausgeschaltet             
+2020.11.07 00:02:35 Neustart Entladesteuerung V1.1 build 04.11.2020
+2020.11.07 00:05:18 Boiler Nachttarif-Ladung noch im Test  BK1 GPIO 19 eingeschaltet             
+2020.11.07 01:32:41 Boiler Nacht(BK1)- / Direktladung(DK1) KK1 GPIO 19 ausgeschaltet             
+2020.11.07 02:15:30 Kessel Nachttarif-Ladung noch im Test  HK2 GPIO 26 eingeschaltet             
+2020.11.07 03:44:30 Kessel Nacht(HK2)- / Direktladung(DK2) KK2 GPIO 26 ausgeschaltet             
+2020.11.07 06:26:46 Neustart Entladesteuerung V1.1 build 04.11.2020
