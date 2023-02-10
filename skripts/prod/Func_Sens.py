@@ -88,14 +88,14 @@ def Temp(Bez) : # Aus Systembus Temperatur eines einzelnen Sensors auslesen
 
 
 def LesBus(Index) :                # Systembus lesen , 2 Zeilen je Sensor
-    line1     =''                  # Initialisierung
+    line1     = ''                 # Initialisierung
     line2     = ''
-    line1und2 = [line1,line2]      # beide Zeilen nin Liste
+    line1und2 = [line1,line2]      # beide Zeilen in Liste
     i         = 0
     imax      = 2                  # max Leseversuche / Iterationen
     iwait     = 0.5                # Sekunden warten bei Iteration
         
-    # Lesen , ggf. Nachlesen , falls keine Temperatur gefunden
+    # Lesen, ggf. Nachlesen, falls keine Temperatur gefunden
     while 'YES' not in line1 or 't=' not in line2 :
         i = i + 1
         if i > 1 : time.sleep (iwait) # mit Nachlesen warten !
@@ -105,16 +105,16 @@ def LesBus(Index) :                # Systembus lesen , 2 Zeilen je Sensor
             line1 = 'Fehler im Skript Func_Sens.Temp.LesBus :' + '\n' 
             line2 = 20*' ' + 'Index ' + Index + '\n' 
             line2 = line2 + 20*' ' + 'konnte im one-wire bus nicht ausgelesen werden '
-            line1und2 =[line1,line2]
+            line1und2 = [line1, line2]
             return (line1und2)        # Abbruch , Rückgabe Fehler in Liste
         line1 = f.readline()          # 1. Zeile lesen
         line2 = f.readline()          # 2. Zeile lesen
-        line1und2 = [line1,line2]     # Liste erstellen
+        line1und2 = [line1, line2]    # Liste erstellen
         f.close()
         if i > imax :                 # Abbruch , da Nachlesen erfolglos
             line1 = 'Fehler im Skript Func_Sens.Temp.LesBus '
             line2 = str(imax) + ' Iterationen überschritten' 
-            line1und2 =[line1,line2]
+            line1und2 = [line1, line2]
             return (line1und2)        # Abbruch , Rückgabe Fehler in Liste
     
     return (line1und2)                # fehlerfreies Ergebnis als Liste zurück
