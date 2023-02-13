@@ -6,7 +6,7 @@ from Sensor import Sensors
 
 sens = Sensors()
 
-for s in sens.sensorList:
+for s in sens:
     print(s)
     print()
 
