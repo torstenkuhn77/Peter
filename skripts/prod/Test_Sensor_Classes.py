@@ -4,9 +4,10 @@
 from Sensor import Sensor
 from Sensor import Sensors
 
-sens = Sensors()
+#Sensors wrapped GVS Konfiguration objektorientiert
 
-for s in sens:
+# Sensors implementiert Iterator protokoll, so kann man ziemlich einfach drüber iterieren 
+for s in Sensors():
     print(s)
     print()
 

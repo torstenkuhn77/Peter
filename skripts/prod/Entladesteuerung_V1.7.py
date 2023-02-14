@@ -23,7 +23,7 @@ import Func_LogDatei       # Funktion Logdatei schreiben
 # eigene externe Routinen Ende ############################################################
 
 # eigene interne Routinen #################################################################
-def Logsatz (LogText,Druck) :     # interne Funktion zum Schreiben eines Logsatzes
+def Logsatz (LogText, Druck):     # interne Funktion zum Schreiben eines Logsatzes
     if 'ABBRUCH' in LogText :     # Exception oder Assertion
         Flag = True
     else :
