@@ -9,7 +9,7 @@ try:
 except:
     print(traceback.format_exc())
 
-# überschreibt den ConsolHandler mit einem Colored Formatter
+# überschreibt den Consolen Handler mit einem Colored Formatter
 LOG_LEVEL = logging.DEBUG
 LOGFORMAT_CONSOLE = "%(log_color)s%(asctime)s-%(name)s-%(levelname)s: %(message)s%(reset)s"
 logging.root.setLevel(LOG_LEVEL)
