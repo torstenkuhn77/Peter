@@ -4,36 +4,40 @@ import logging.config
 from colorlog import ColoredFormatter
 
 class Logger:
-    def __init__(self):
-#        logging.config.fileConfig('Logging.conf')
-#        print(logging.config.dictConfig())
+    logLevel: int = logging.DEBUG
+    stream: any = None
 
-        LOG_LEVEL = logging.DEBUG
-        LOGFORMAT = "%(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
-        logging.root.setLevel(LOG_LEVEL)
-        formatter = ColoredFormatter(LOGFORMAT)
+    def __init__(self, level = logging.DEBUG, config = 'Logging.conf'):
+        logging.config.fileConfig(config)
+        # überschreibt den root Consolen Handler mit einem Colored Formatter
+        logLevel = level
+        LOGFORMAT_CONSOLE = "%(log_color)s%(asctime)s-%(name)s-%(levelname)s: %(message)s%(reset)s"
+        logging.root.setLevel(logLevel)
+        formatter = ColoredFormatter(LOGFORMAT_CONSOLE)
         stream = logging.StreamHandler()
         stream.setFormatter(formatter)
-        log = logging.getLogger()
-        log.setLevel(LOG_LEVEL)
+        log = logging.getLogger()       # root logger
+        log.setLevel(logLevel)
         log.addHandler(stream)
 
-    def GetLogger(name):
-        return logging.getLogger(name)
+    def GetLogger(self, name):
+        log = logging.getLogger(name)
+        log.setLevel(self.logLevel)
+        log.addHandler(self.stream)
+        return log
 
-    def Log(level , *args):
-        log = logging.getLogger()
-        if log.level == level:
-            if level == logging.DEBUG:
-                logging.debug(args)
-            if level == logging.INFO:
-                logging.info(args)
-            if level == logging.ERROR:
-                logging.error(args)
-            if level == logging.FATAL:
-                logging.fatal(args)
-            if level == logging.WARN:
-                logging.warn(args)
-            if level == logging.CRITICAL:
-                logging.critical(args)
+    def Log(self, name, level, *args):
+        log = self.GetLogger(name)
+        if level == logging.DEBUG:
+            log.debug(args)
+        if level == logging.INFO:
+            log.info(args)
+        if level == logging.ERROR:
+            log.error(args)
+        if level == logging.FATAL:
+            log.fatal(args)
+        if level == logging.WARN:
+            log.warn(args)
+        if level == logging.CRITICAL:
+            log.critical(args)
                  
