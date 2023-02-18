@@ -4,14 +4,9 @@
 # -*- coding: utf-8 -*-   
 
 # System- und fremde Funktionen ###########################################################
-import time , sys , RPi.GPIO as GPIO  , json
-from colorama import init , Fore , Style , Back
-init(autoreset=True) # init(autoreset=True) Farbe gilt nur je Druckposition
-                     # init()               Farbe gilt bis Programmende
-#Farben :           #Fore: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
-                    #Back: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
-                    #Style: DIM, NORMAL, BRIGHT, RESET_ALL
-# System- und fremde Funktionen Ende ######################################################
+import time,sys ,RPi.GPIO as GPIO ,json
+import logging 
+from Logger import Logger
 
 # eigene externe Routinen #################################################################
 import Func_Sens           # Funktion zum Auslesen eines Temperatursensors
@@ -22,34 +17,13 @@ import GVS                 # Zwischenspeicher eigene globale Variablen
 import Func_LogDatei       # Funktion Logdatei schreiben
 # eigene externe Routinen Ende ############################################################
 
-# eigene interne Routinen #################################################################
-def Logsatz (LogText, Druck):     # interne Funktion zum Schreiben eines Logsatzes
-    if 'ABBRUCH' in LogText :     # Exception oder Assertion
-        Flag = True
-    else :
-        Flag = False
-    LogText = Func_LogDatei.Schreiben (time.strftime("%Y.%m.%d %H:%M:%S") , LogText , GVS.RelLogDir , GVS.RelLogFile)
-    LogText = LogText.replace (time.strftime("%Y.%m.%d %H:%M:%S"),19*' ') # timestamp entfernen , durch blanks ersetzen
-    if 'Fehler' in LogText :      # Fehler beim Schreiben der Logdatei
-        LogText = Fore.RED   + Style.BRIGHT + LogText
-        print (LogText)
-    else :
-        if Flag :                 # Exception oder Assertion
-            LogText = Fore.RED   + Style.BRIGHT + LogText
-        else :
-            LogText = Fore.GREEN + Style.BRIGHT + LogText
-        if Druck :
-            print (LogText)
-    # Ende interne Funktion zum Schreiben eines Logsatzes
-
-
-# Ende eigene interne Routinen ############################################################
+log = Logger() 
+logScreen = log.GetLogger("Screen") # nur Console Ausgaben
+logMain = log.GetLogger("Main")     # Console/File Ausgaben
 
 try:
     # Initialisierung des Programms und Versionsangabe
-    Version = ' >> V1.7 build 2021.02.26 buster << '
-    # Fehlertext bei Abbruch
-    END_TEXT = ''
+    Version = ' >> V2.0 build 2023.02.16 buster << '
     # Anzahl Verarbeitungsvorgänge
     iverarb  = 0
     # Schalter Histerese der Relais DK1 , DK2 im Keller
@@ -57,23 +31,10 @@ try:
     GVS.RelTab['DK2_Hist'] = False    # DK2  Kessel   
     # Routine bei Neustart
     # Logsatz bei Neustart in Logdatei schreiben
-    print ()
+    
+    print()
     TextString = 'Neustart Entladesteuerung  ' + Version + '  Initialisierung :'
-    print (Fore.GREEN + Style.BRIGHT + time.strftime("%Y.%m.%d %H:%M:%S") + ' ' + TextString)
-    Logsatz (TextString,True)
-#     # Startverzögerung , muß nicht sein , S p i e l e r e i  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#     print ()
-#     wait = 3     # Wartezeit in Sekunden für Startverzögerung
-#     TextString = str(wait) +' Sekunden noch  '
-#     print (TextString , end = ' ')
-#     for i in range(wait):
-#         time.sleep(1)
-#         if int(wait-i) == 1 :
-#             sys.stdout.write("%s" % int(wait-i) + "   jetzt wird eingeheizt ... ")
-#         else :
-#             sys.stdout.write("%s" % int(wait-i) + '  ')
-#     print ()
-#     # Startverzögerung Ende  ################################################################
+    logMain.log(logging.INFO, TextString)
 
     # Initialisierung / Reset aller Relais
     # Setzen Parameter zur Initialisierung aller Relais
@@ -82,11 +43,8 @@ try:
     RELAIS       = 'alle'         # alle Relais wie in Relais-Tabelle GVS.RelTab() definiert
     # Initialisierung durchführen Schalten , ggf.Ergebnis drucken , loggen
     Schalter     = False         # True = ein , False = aus
-    print (Func_Relais.Reset (RELAIS , Schalter , drucken , loggen))
-
-#     # Für Test Exception ##################################################
-#     e = 'Test Exception as eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
-#     raise Exception (e)
+    result = Func_Relais.Reset(RELAIS , Schalter , drucken , loggen)
+    logScreen.log(logging.INFO, result)
 
     # Endlosschleife für jeden weiteren Verarbeitungsvorgang solange bis Abbruch
     while True :
@@ -106,7 +64,7 @@ try:
 
         TextString = ' START Entladesteuerung    ' + str(iverarb) + '. Lauf -----------------------------------------'
         TextString = time.strftime("%Y.%m.%d %H:%M:%S") + TextString
-        print (Fore.GREEN + TextString)
+        logScreen.log(logging.INFO, TextString)
         
         if iverarb == 1 :  # Informationen zu Steuerungsparametern , Nachttarif etc. nur beim 1. Lauf
             print (19 * ' ',"Steuerungsparameter,aktuelle Werte : (Zeiten hh:mm Temperaturen Grad Celsius)")    
@@ -117,6 +75,7 @@ try:
         i_les_Sens_max = 3   # max Anzahl Leseversuche ONE-Wire Bus
         les_wait       = 10  # Sekunden Wartezeit bei Unterbrechung ONE-Wire Bus
         Ergebnis = 'Fehler'  # Annahme : shit happens
+        
         while 'Fehler' in Ergebnis and i_les_Sens < i_les_Sens_max :
             i_les_Sens = i_les_Sens + 1
             Ergebnis = str(Func_Sens.les_alle (Typ))
@@ -227,10 +186,10 @@ try:
             SoLo_Bezug     = 0
             Solo_Erzeugung = 0                                  # Erzeugung und Bezug mit 0 angenommen
             print (SoLo_Text)
-            print (Fore.YELLOW + 20 * ' ' + 'Erzeugung und Bezug für weitere Verarbeitung mit o angenommen !')
+            print (Fore.YELLOW + 20 * ' ' + 'Erzeugung und Bezug für weitere Verarbeitung mit 0 angenommen !')
         else :                                                  # Solar-log Bezug und Erzeugung ermitteln
-            SoLo_Bezug = (round((GVS.SolarLog_Erzeugung - GVS.SolarLog_Verbrauch),2))
-            Solo_Erzeugung = round(GVS.SolarLog_Erzeugung,2)
+            SoLo_Bezug = (round((GVS.SolarLog_Erzeugung - GVS.SolarLog_Verbrauch), 2))
+            Solo_Erzeugung = round(GVS.SolarLog_Erzeugung, 2)
             print (SoLo_Text,'Tagbetrieb erst ab PVmin',PVmin)
         
         # Prüfung , ob Raumheizung pausiert                       # Pause von ... bis ...  ?
@@ -251,7 +210,6 @@ try:
                 
         # Ausgabe Istwerte nur relevant bei aktiver Raumheizung
         if Raumheizung :
-            
             # Entscheid , ob Tagbetrieb oder Nachtabsenkung , entsprechende Ausgabe
             TextString = 'Raumheizung         eingeschaltet '
             # Tagbetrieb nur zwischen 7 und 21 Uhr zulässig !
@@ -304,8 +262,8 @@ try:
             print ("- Raumtemperatur    aktuell",RTakt,"max",RTmax,'min',RTmin)        
 
             # Ausgabe Kesseltemperatur , Prüfung Nachtaufladung und ob Histerese ein / aus / bleibt #########################
-
-            Ergebnis = Func_Geraet.pruef('Kessel',NT_Zeit_Start,NT_Zeit_Ende,KNvon,KNbis,DTvon,DTbis,DTakt,KTakt,KTmin,KTmax,KThist)
+            Ergebnis = Func_Geraet.pruef('Kessel', NT_Zeit_Start, NT_Zeit_Ende, KNvon, KNbis, DTvon, DTbis,
+                                DTakt, KTakt, KTmin, KTmax, KThist)
             
             Rel_NameKessel    = Ergebnis.pop(0)   # 1. Parameter des Ergebnisses : betreffendes Relais
             Rel_SchKessel     = Ergebnis.pop(0)   # 2. Parameter des Ergebnisses : betreffender Schalter
@@ -324,7 +282,7 @@ try:
             else :
                 print ("- Vorlauftemperatur aktuell",VTakt,"max",VTmax)
             
-            # Entscheid , ob boost eingeschaltet wird
+            # Entscheid, ob boost eingeschaltet wird
             if Tagsteuerung :
                 boost = True
             else :
@@ -528,8 +486,7 @@ try:
             RELAIS = 'GK1'   # Garten-Relais
             TextString = (Func_Relais.Set (RELAIS , Schalter  , drucken , loggen))
             if TextString != () : print (TextString)
-            time.sleep(1)                   # 1 sec warten
-            
+            time.sleep(1)                   # 1 sec warten   
         # Ende Schaltvorgänge #######################################################################################
         if not Tagsteuerung : wait = wait * NachtFaktor # in der Nacht verlängerter Zyklus
         if iverarb == 1   : wait = wait / 2             # beim 1. Lauf nur 1/2 Zeit warten
@@ -540,38 +497,37 @@ try:
         # Ende Endlosschleife nächster Lauf zyklisch nach x Sekunden
         print ()
         time.sleep(wait)
-
+    # while(true) Block Ende
 
 except KeyboardInterrupt as e :
     # Programm beendet mit CTRL+C oder Strg+C
     print ()
-    END_TEXT   = 'ENDE Entladesteuerung '+ Version
+    END_TEXT   = 'ENDE Entladesteuerung ' + Version
     END_TEXT1  = 'mit KeyboardInterrupt (CTRL+C oder Strg+C)'
     END_TEXTZ  = Fore.GREEN + Style.BRIGHT + time.strftime("%Y.%m.%d %H:%M:%S") + ' '
     END_TEXTZ1 = Fore.GREEN + Style.BRIGHT + 20 * ' '
     print   (END_TEXTZ  + END_TEXT)                     # 1. Zeile Drucken           
     print   (END_TEXTZ1 + END_TEXT1)                    # 2. Zeile Drucken
-    Logsatz (END_TEXT ,True)                            # 1. Zeile Loggen und Drucken
-    Logsatz (END_TEXT1,False)                           # 2. Zeile Loggen , nicht Drucken  
+    Logsatz (END_TEXT , True)                           # 1. Zeile Loggen und Drucken
+    Logsatz (END_TEXT1, False)                          # 2. Zeile Loggen , nicht Drucken  
     END_TEXT = ''                                       # weiter zum Ende --> finally
     
 except AssertionError as e :
     # Programm ABBRUCH mit AssertionError
     print ()
-    END_TEXT   = 'ABBRUCH Entladesteuerung '+ Version
+    END_TEXT   = 'ABBRUCH Entladesteuerung ' + Version
     END_TEXT1  = 'mit AssertionError : '
     END_TEXT2  = str(e)
         
 except Exception as e :
     # Programm ABBRUCH mit Exception
     print ()
-    END_TEXT   = 'ABBRUCH Entladesteuerung '+ Version
+    END_TEXT   = 'ABBRUCH Entladesteuerung ' + Version
     END_TEXT1  = 'mit Exception : '
     END_TEXT2  = str(e)
 
 finally :
     # Das Programm wird hier beendet
-    
     if END_TEXT == '' :                                     # ordnungsgemäß beendet
         print ()
         END_TEXT = 20 * ' ' + '---> Programm fehlerfrei beendet und' 
@@ -582,9 +538,9 @@ finally :
         print   (END_TEXTZ  + END_TEXT)                     # 1. Zeile Drucken           
         print   (END_TEXTZ1 + END_TEXT1)                    # 2. Zeile Drucken
         print   (END_TEXTZ1 + END_TEXT2)                    # 3. Zeile Drucken
-        Logsatz (END_TEXT ,True)                            # 1. Zeile Loggen und Drucken
-        Logsatz (END_TEXT1,False)                           # 2. Zeile Loggen , nicht Drucken
-        Logsatz (END_TEXT2,False)                           # 3. Zeile Loggen , nicht Drucken       
+        Logsatz (END_TEXT, True)                            # 1. Zeile Loggen und Drucken
+        Logsatz (END_TEXT1, False)                          # 2. Zeile Loggen , nicht Drucken
+        Logsatz (END_TEXT2, False)                          # 3. Zeile Loggen , nicht Drucken       
     # Initialisierung / Reset aller Relais
     # Setzen Parameter zur Initialisierung aller Relais
     drucken      = True           # True = ja , False = nein
@@ -594,6 +550,4 @@ finally :
     Schalter     = False         # True = ein , False = aus
     print (Func_Relais.Reset (RELAIS , Schalter , drucken , loggen))
     
-#     sys.exit(0)  # wenn kein Fehler in die Console geschrieben werden soll
-    
-
+#   sys.exit(0)  # wenn kein Fehler in die Console geschrieben werden soll

@@ -12,6 +12,7 @@ class Sensor:
     temperature: float
     adjustment: float
     lastUpdate: str
+    lastError: str
 
 def create_sensor_list():  
     sensorList: list = list()
@@ -20,7 +21,7 @@ def create_sensor_list():
         for t in GVS.SensList:
             if t in GVS.SensTab.keys():
                 s = Sensor(sensorType=sensorTyp, sensorName=t, 
-                    sensorAddress=GVS.SensTab.get(t), temperature=0.0, adjustment=0.0, lastUpdate='00.00.0000 00:00:00')                       
+                    sensorAddress=GVS.SensTab.get(t), temperature=0.0, adjustment=0.0, lastUpdate='00.00.0000 00:00:00', lastError=None)                       
                 sensorList.append(s)
     return sensorList
 

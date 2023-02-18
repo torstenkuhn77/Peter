@@ -8,7 +8,8 @@ from Sensor import Sensors
 
 # Sensors implementiert Iterator protokoll, so kann man ziemlich einfach drüber iterieren 
 for s in Sensors():
-    print(s)
+    print(s.sensorType)
+    print(s.sensorName)
     print()
 
 print('ready')
