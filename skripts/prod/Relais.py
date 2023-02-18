@@ -30,7 +30,7 @@ def create_relais_list():
         hist = None
         if GVS.RelTab.get(relaisName + "_Hist"):
             hist = GVS.RelTab.get(relaisName + "_Hist")
-        r = Relais(Name=relaisName, Function=funk,GPIO = gpio, PIN=pin, log=log, his = hist, 
+        r = Relais(Name=relaisName, Function=funk, GPIO = gpio, PIN=pin, log=log, hist = hist, 
                     lastUpdate='00.00.0000 00:00:00', lastError=None)                       
         relaisList.append(r)
     return relaisList
