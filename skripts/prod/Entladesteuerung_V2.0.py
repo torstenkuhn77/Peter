@@ -1,5 +1,5 @@
-# shell : python3 /home/pi/skripts/prod/Entladesteuerung_V1.7.py
-#         @/usr/bin/python3 /home/pi/skripts/prod.Entladesteuerung_V1.7.py
+# shell : python3 /home/pi/skripts/prod/Entladesteuerung_V2.0.py
+#         @/usr/bin/python3 /home/pi/skripts/prod.Entladesteuerung_V2.0.py
 
 # -*- coding: utf-8 -*-   
 
@@ -8,14 +8,21 @@ import time,sys ,RPi.GPIO as GPIO ,json
 import logging 
 from Logger import Logger
 
+from RelaisList import RelaisList
+from SensorClasses import SensorList
+
 # eigene externe Routinen #################################################################
 import Func_Sens           # Funktion zum Auslesen eines Temperatursensors
 import Func_Relais         # Funktion zum Set / Reset von Relais
 import Func_Solar_Log      # Funktion zum Lesen aus Solar-Log JSON Schnittstelle
 import Func_Geraet         # Funktion Ausgabe Gerätetemperatur , Prüfung Nachtaufladung und ob Histerese ein / aus / bleibt 
 import GVS                 # Zwischenspeicher eigene globale Variablen
-import Func_LogDatei       # Funktion Logdatei schreiben
 # eigene externe Routinen Ende ############################################################
+
+# Globale Sensor Liste
+sensorList = SensorList()
+# Globale Relais Liste
+relaisList = RelaisList()
 
 log = Logger() 
 logScreen = log.GetLogger("Screen") # nur Console Ausgaben
@@ -43,8 +50,7 @@ try:
     RELAIS       = 'alle'         # alle Relais wie in Relais-Tabelle GVS.RelTab() definiert
     # Initialisierung durchführen Schalten , ggf.Ergebnis drucken , loggen
     Schalter     = False         # True = ein , False = aus
-    result = Func_Relais.Reset(RELAIS , Schalter , drucken , loggen)
-    logScreen.log(logging.INFO, result)
+    Func_Relais.Reset(relaisList, RELAIS, Schalter, drucken, loggen)
 
     # Endlosschleife für jeden weiteren Verarbeitungsvorgang solange bis Abbruch
     while True :
@@ -63,36 +69,41 @@ try:
         iverarb = iverarb + 1 # Zähler Lauf
 
         TextString = ' START Entladesteuerung    ' + str(iverarb) + '. Lauf -----------------------------------------'
-        TextString = time.strftime("%Y.%m.%d %H:%M:%S") + TextString
         logScreen.log(logging.INFO, TextString)
         
         if iverarb == 1 :  # Informationen zu Steuerungsparametern , Nachttarif etc. nur beim 1. Lauf
-            print (19 * ' ',"Steuerungsparameter,aktuelle Werte : (Zeiten hh:mm Temperaturen Grad Celsius)")    
+            logScreen.log(logging.INFO, "Steuerungsparameter,aktuelle Werte : (Zeiten hh:mm Temperaturen Grad Celsius)")    
         
         # aus Systembus die Werte aller Sensoren vom Typ DS18B20 auslesen , in GVS.SensTab speichern und ausdrucken
         Typ = 'DS18B20'      # Sensor Typ
         i_les_Sens     = 0   # Zähler Leseversuche ONE-Wire Bus
         i_les_Sens_max = 3   # max Anzahl Leseversuche ONE-Wire Bus
         les_wait       = 10  # Sekunden Wartezeit bei Unterbrechung ONE-Wire Bus
-        Ergebnis = 'Fehler'  # Annahme : shit happens
+        Ergebnis = False     # Annahme -> shit happens
         
-        while 'Fehler' in Ergebnis and i_les_Sens < i_les_Sens_max :
+        while not Ergebnis and i_les_Sens < i_les_Sens_max :
             i_les_Sens = i_les_Sens + 1
-            Ergebnis = str(Func_Sens.les_alle (Typ))
-            TextString = time.strftime("%Y.%m.%d %H:%M:%S") + ' Ergebnis Auslesen aller Sensoren '
+            Ergebnis = sensorList.ReadAll(Typ)
+
+            TextString = 'Ergebnis Auslesen aller Sensoren '
             TextString = TextString + Typ + ' ' + str(i_les_Sens) + '. Versuch '
-            if 'Fehler' in Ergebnis :              # Fehler --> Nachlesen
+            
+            if not Ergebnis :              # Fehler --> Nachlesen
                 if i_les_Sens == i_les_Sens_max :  # Nachlesen erfolglos max Anzahl Leseversuche erreicht
-                    TextString = time.strftime("%Y.%m.%d %H:%M:%S") + ' Auslesen aller Sensoren '
+                    TextString = 'Auslesen aller Sensoren '
                     TextString = TextString + Typ + ' auch ' + str(i_les_Sens) + '. und letzter Versuch '
-                    TextString = Fore.RED    + TextString + ' erfolglos '
-                    print (TextString)
-                    raise AssertionError (Ergebnis)
+                    TextString = TextString + ' erfolglos '
+                    
+                    logScreen.log(logging.critical, TextString)
+                    
+                    raise AssertionError("Auslesen der Temperaturwerte fehlgeschlagen.")
                 else :                             # x Mal Nachlesen , ONE-Wire Bus reset
-                    TextString = time.strftime("%Y.%m.%d %H:%M:%S") + ' Warnung : Auslesen aller Sensoren '
+                    TextString = 'Warnung : Auslesen aller Sensoren '
                     TextString = TextString + Typ + ' ' + str(i_les_Sens) + '. Versuch '
-                    TextString = Fore.YELLOW + TextString + ' fehlerhaft --> Wiederholung nach ONE-Wire reset'
-                    print (TextString)
+                    TextString = TextString + ' fehlerhaft --> Wiederholung nach ONE-Wire reset'
+                    
+                    logScreen.log(logging.WARNING, TextString)
+                    
                     # ONE-Wire Bus unterbrechen und neuer Versuch ##############################
                     # Setzen Parameter zur Unterbrechung des ONE-Wire Bus
                     drucken    = True           # True = ja , False = nein
@@ -100,26 +111,27 @@ try:
                     RELAIS     = 'WK4'          # Relais wie in Relais-Tabelle GVS.RelTab() definiert
                     # Schaltvorgang zur Unterbrechung ONE-Wire Bus Schalten , Ergebnis drucken , loggen
                     Schalter   = True           # True = GND Ausschalten
-                    U_Ergebnis = str((Func_Relais.Set (RELAIS , Schalter , drucken , loggen)))
+                    Func_Relais.Set(relaisList, RELAIS, Schalter, drucken, loggen)
+                    
                     if 'Fehler' in U_Ergebnis : # Fehler beim Ausschalten
                         print (Fore.RED   + 20 * ' ' + 'Abbruch : Fehler beim Ausschalten ONE-Wire Bus ')
                         raise AssertionError (U_Ergebnis)
                     else :
                         print (U_Ergebnis)
+                    
                     time.sleep (les_wait)       # Warten vor wieder Einschalten !
                     Schalter   = False          # False = GND wieder Einschalten
-                    U_Ergebnis = str((Func_Relais.Set (RELAIS , Schalter , drucken , loggen)))
+                    U_Ergebnis = str((Func_Relais.Set(relaisList, RELAIS, Schalter, drucken, loggen)))
                     if 'Fehler' in U_Ergebnis : # Fehler beim Einschalten
                         print (Fore.RED   + 20 * ' ' + 'Abbruch : Fehler beim Einschalten ONE-Wire Bus ')
                         raise AssertionError (U_Ergebnis)
                     else :
                         print (U_Ergebnis)
+                    
                     time.sleep (les_wait)       # Warten vor dem nächsten Auslesen !
                     # Ende ONE-Wire Bus zurücksetzen und neuer Versuch #########################
                 
-            else :                              # Lesen erfolgreich
-                print (TextString)
-                print (Ergebnis)
+                Func_Sens.PrintResults(TextString)
                 
         # Informationen aufbereiten , Parameter setzen , prüfen , Istwerte ermitteln
         
@@ -182,15 +194,15 @@ try:
         # Fotovoltaik-Informationen lesen und ausgeben          # lokale IP des Solar-Log aus GVS
         SoLo_Text = Func_Solar_Log.Lesen(GVS.SolarLog_localIP)  # Funktion Solar-log aus JSON-Datei lesen  
         if 'Fehler' in SoLo_Text :                              # Solar-log Fehler beim Lesen Warnung ausgeben
-            SoLo_Text = time.strftime("%Y.%m.%d %H:%M:%S") + Fore.YELLOW + ' Warnung : ' + SoLo_Text
+            SoLo_Text = ' Warnung : ' + SoLo_Text
             SoLo_Bezug     = 0
             Solo_Erzeugung = 0                                  # Erzeugung und Bezug mit 0 angenommen
-            print (SoLo_Text)
-            print (Fore.YELLOW + 20 * ' ' + 'Erzeugung und Bezug für weitere Verarbeitung mit 0 angenommen !')
+            logScreen.log(logging.WARNING, SoLo_Text)
+            logScreen.log(logging.WARNING, 20 * ' ' + 'Erzeugung und Bezug für weitere Verarbeitung mit 0 angenommen !')
         else :                                                  # Solar-log Bezug und Erzeugung ermitteln
             SoLo_Bezug = (round((GVS.SolarLog_Erzeugung - GVS.SolarLog_Verbrauch), 2))
             Solo_Erzeugung = round(GVS.SolarLog_Erzeugung, 2)
-            print (SoLo_Text,'Tagbetrieb erst ab PVmin',PVmin)
+            logScreen.log(logging.INFO, SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
         
         # Prüfung , ob Raumheizung pausiert                       # Pause von ... bis ...  ?
         # Raumheizung pausieren , wenn PV-Überschuß nicht ausreichend und
@@ -205,17 +217,17 @@ try:
             else :
                 TextString = ' von ' + DTbis + ' bis ' + NT_Zeit_Start
             TextString = 'Raumheizung         pausiert' + TextString
-            TextString = Fore.YELLOW + TextString + ' , PV-Überschuß nicht ausreichend , Steuerung ausgeschaltet'
-            print (TextString)
+            TextString = TextString + ' , PV-Überschuß nicht ausreichend , Steuerung ausgeschaltet'
+            logScreen.log(logging.WARNING, TextString)
                 
         # Ausgabe Istwerte nur relevant bei aktiver Raumheizung
-        if Raumheizung :
+        if Raumheizung:
             # Entscheid , ob Tagbetrieb oder Nachtabsenkung , entsprechende Ausgabe
             TextString = 'Raumheizung         eingeschaltet '
             # Tagbetrieb nur zwischen 7 und 21 Uhr zulässig !
             if DTvon >=  DTbis or DTvon < '07:00' or DTbis > '21:00' :
                 TextString = 'weitere Verarbeitung nicht möglich , '
-                if not DTbis > DTvon :
+                if not DTbis > DTvon:
                     TextString = TextString + 'Tagbetrieb "bis" muß größer sein als "von"'
                 else :
                     TextString = TextString + 'Tagbetrieb nur von 7 bis 21 Uhr'
@@ -223,7 +235,7 @@ try:
                 TextString = TextString + 20 * ' ' + 'Parameter korrigieren in : /home/pi/skripts/prod/Parameter.json'
                 raise AssertionError (TextString)
             
-            if SoLo_Bezug > PVmin :                      # ausreichender PV-Überschuß --> immer Tagsteuerung
+            if SoLo_Bezug > PVmin:                      # ausreichender PV-Überschuß --> immer Tagsteuerung
                 TextString = TextString + ' (Tagbetrieb , da ausreichend PV-Überschuß)'
                 Tagsteuerung = True
             else :                                       # wenn kein ausreichender PV-Überschuß
@@ -234,7 +246,7 @@ try:
                     TextString = TextString + "(Nachtabsenkung von " + DTbis + " bis " + DTvon
                     Tagsteuerung = False
                 TextString = TextString + ' Nachttarif (NT) ' + NT_Zeit_Start + ' bis ' + NT_Zeit_Ende + ')'
-            print (TextString)
+            logScreen.log(logging.INFO, TextString)
             # Ausnahmen bei Tagsteuerung --> Umschalten auf Nachtabsenkung
             if Tagsteuerung :
                 TextString = ''
@@ -246,8 +258,8 @@ try:
                     TextString = 'Kesseltemperatur ' + str(KTakt) + ' unter ' + str(KTmin + KThist) + ' (min + hist)'
                 if TextString != '' :
                     Tagsteuerung = False
-                    TextString = Fore.YELLOW + "- Tagbetrieb        aber Nachtabsenkung , da " + TextString
-                    print (TextString) 
+                    TextString = "- Tagbetrieb        aber Nachtabsenkung , da " + TextString
+                    logScreen.log(logging.WARNING,TextString) 
             # Ausnahmen bei Nachtabsenkung --> Umschalten auf Tagsteuerung
             else :
                 TextString = ''
@@ -255,8 +267,8 @@ try:
                     TextString = "aktuelle Raumtemperatur" + str(RTakt) + 'unter Minimum' + str(RTmin)
                 if TextString != '' :
                     Tagsteuerung = True
-                    TextString = Fore.YELLOW + "- Nachtabsenkung    aber Tagbetrieb , da " + TextString
-                    print (TextString) 
+                    TextString = "- Nachtabsenkung    aber Tagbetrieb , da " + TextString
+                    logScreen.log(logging.WARNING, TextString) 
             
             # Ausgabe Raumtemperatur 
             print ("- Raumtemperatur    aktuell",RTakt,"max",RTmax,'min',RTmin)        
@@ -353,14 +365,13 @@ try:
                 
         # Beginn Relais - Schaltvorgänge ###########################################################################
         #  Aktionen Kessel und Tagsteuerung nur , wenn Raumheizung eingeschaltet ist !
-        TextString = Style.BRIGHT + 'Schaltvorgänge  :   '+ Style.RESET_ALL  
+        TextString = 'Schaltvorgänge  :   '  
         TextString = TextString + "(Hintergrund rot->aus,grün->ein  Schrift weiß->unverändert,schwarz->geschaltet)"
-        print (TextString) 
+        logScreen.log(logging.INFO, TextString) 
         
-        if Raumheizung : 
-            
-            TextString = Style.BRIGHT +'- Raumheizung   :'
-            print (TextString)
+        if Raumheizung:            
+            TextString = '- Raumheizung   :'
+            logScreen.log(logging.INFO, TextString)
             
             # Setzen Parameter zur Schaltung von Relais WK1 für die Funktion Tag-/Nachtbetrieb
             RELAIS       = 'WK1'            # Relais wie in Relais-Tabelle definiert
@@ -389,8 +400,8 @@ try:
             
         #  keine Raumheizung --> alle Relais ausschalten , die davon betroffen sind !           
         else :
-            TextString = Fore.YELLOW + '- Raumheizung       und zugehörige Relais WK1,WK2,KK2<HK2,DK2> ausgeschaltet' 
-            print (TextString)
+            TextString = '- Raumheizung       und zugehörige Relais WK1,WK2,KK2<HK2,DK2> ausgeschaltet' 
+            logScreen(logging.WARNING, TextString)
             # Schaltvorgang aus durchführen
             Schalter         = False
             drucken          = False
@@ -409,7 +420,7 @@ try:
 
         #  Aktionen Boiler nur , wenn Warmwasser eingeschaltet ist !
         if Warmwasser :
-            TextString = Style.BRIGHT +'- Warmwasser    :'
+            TextString = '- Warmwasser    :'
             print (TextString)      
             # Schaltung Relais K1 für den Boiler im Keller
             # Parameter bereits gesetzt oben durch Funktion Func_Geraet.pruef
@@ -423,7 +434,7 @@ try:
                      
         #  Keine Warmwasserbereitung -->  Relais Boiler ausschalten          
         else :  
-            TextString = Fore.YELLOW + 'Warmwasserbereitung und zugehörige Relais KK1<BK1,DK1> ausgeschaltet' + Style.RESET_ALL 
+            TextString = Fore.YELLOW + 'Warmwasserbereitung und zugehörige Relais KK1<BK1,DK1> ausgeschaltet'  
             print (TextString)
             # Schaltvorgang aus durchführen
             Schalter         = False
@@ -435,7 +446,7 @@ try:
 
         # Sonstige Schaltvorgänge
         if Sonstige :
-            TextString = Style.BRIGHT + '- Sonstige      :'
+            TextString =  '- Sonstige      :'
             print (TextString)
             
             # Setzen Parameter zum Pingen von Relais WK3 für TFA 3035 pingen
@@ -474,7 +485,7 @@ try:
         
         #  keine Sonstige --> alle Relais ausschalten , die davon betroffen sind !   
         else :
-            TextString = Fore.YELLOW + 'Sonstige            und zugehörige Relais WK3,GK1 ausgeschaltet' + Style.RESET_ALL 
+            TextString = Fore.YELLOW + 'Sonstige            und zugehörige Relais WK3,GK1 ausgeschaltet'  
             print (TextString)
             # Schaltvorgang aus durchführen
             Schalter         = False
@@ -504,8 +515,8 @@ except KeyboardInterrupt as e :
     print ()
     END_TEXT   = 'ENDE Entladesteuerung ' + Version
     END_TEXT1  = 'mit KeyboardInterrupt (CTRL+C oder Strg+C)'
-    END_TEXTZ  = Fore.GREEN + Style.BRIGHT + time.strftime("%Y.%m.%d %H:%M:%S") + ' '
-    END_TEXTZ1 = Fore.GREEN + Style.BRIGHT + 20 * ' '
+    END_TEXTZ  = Fore.GREEN +  time.strftime("%Y.%m.%d %H:%M:%S") + ' '
+    END_TEXTZ1 = Fore.GREEN +  20 * ' '
     print   (END_TEXTZ  + END_TEXT)                     # 1. Zeile Drucken           
     print   (END_TEXTZ1 + END_TEXT1)                    # 2. Zeile Drucken
     Logsatz (END_TEXT , True)                           # 1. Zeile Loggen und Drucken
@@ -531,10 +542,10 @@ finally :
     if END_TEXT == '' :                                     # ordnungsgemäß beendet
         print ()
         END_TEXT = 20 * ' ' + '---> Programm fehlerfrei beendet und' 
-        print (Fore.GREEN + Style.BRIGHT + END_TEXT )
+        print (Fore.GREEN +  END_TEXT )
     else :                                                  # Abbruch mit Assertion oder Exception
-        END_TEXTZ  = Fore.RED + Style.BRIGHT + time.strftime("%Y.%m.%d %H:%M:%S") + ' '
-        END_TEXTZ1 = Fore.RED + Style.BRIGHT + 20 * ' '
+        END_TEXTZ  = Fore.RED +  time.strftime("%Y.%m.%d %H:%M:%S") + ' '
+        END_TEXTZ1 = Fore.RED +  20 * ' '
         print   (END_TEXTZ  + END_TEXT)                     # 1. Zeile Drucken           
         print   (END_TEXTZ1 + END_TEXT1)                    # 2. Zeile Drucken
         print   (END_TEXTZ1 + END_TEXT2)                    # 3. Zeile Drucken

@@ -1,21 +1,20 @@
 # shell : python3 /home/pi/skripts/prod/Func_Sens.py
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from Sensor import Sensor
-from Sensor import Sensors
-
-import time
+from SensorClasses import Sensor
+from SensorClasses import SensorList
 import GVS      # Zwischenspeicher eigene globale Variablen
+import time 
 
-def ReadAll(Typ: str) -> str:  # aus Systembus alle Temperaturen zu allen Sensoren eines Typs auslesen
+def ReadAll(Typ: str, sensorList: SensorList) -> str:  # aus Systembus alle Temperaturen zu allen Sensoren eines Typs auslesen
                                # und in GVS.SensTab speichern und Rückgabe zum Druck aufbereiteter Textzeilen
     
-    for sens in Sensors():                  # Über alle Sensoren iterieren und                                                                        
+    for sens in sensorList:                 # Über alle Sensoren iterieren und                                                                        
         fErgebnis = ReadTemperature(sens)   # Temperaturwert des einzelnen Sensors auslesen
                                             # Prüfung , ob ausgelesener Wert fehlerhaft
         
         # GVS.Senstab aus Kompatibilitätsgründen aktualisieren (eigentlich nicht mehr nötig)
-        if fErgebnis == False : # Fehler beim Auslesen
+        if fErgebnis == False: # Fehler beim Auslesen, aus Kompatibiliät wird GVS.SensTab noch aktualisiert
             GVS.SensTab [sens.sensorName + '_Stp'] = sens.LastError
             GVS.SensTab [sens.Sensorname + '_Tmp'] = sens.temperature
             Lesefehler = True               # --> mindestens ein Lesefehler aufgetreten
@@ -50,7 +49,7 @@ def ReadTemperature(sens: Sensor) -> bool: # Aus Systembus Temperatur eines einz
     line1 = line1und2.pop(0)                       # Liste entladen       
     line2 = line1und2.pop(0)
 
-    # lastUpdate setzen
+    # lastUpdate timestamp setzen
     sens.SetLastUpdate();
 
     if 'Fehler' in line1 :                         # Abbruch bei Lesefehler im Systembus
@@ -63,7 +62,7 @@ def ReadTemperature(sens: Sensor) -> bool: # Aus Systembus Temperatur eines einz
         # auf 1 Nachkommastelle runden
         tempCelsius   = round(float(tempData) / 1000, 1)
         if tempCelsius <= 0 :
-            sens.temperature = tempCelsius
+            sens.temperature = tempCelsius  # Temperaturwert für Druckprotokoll speichern
             sens.lastError = 'Fehler in Func_Sens.ReadTemperature: Negativen Wert ausgelesen, sollte > 0 sein'
             return False
 

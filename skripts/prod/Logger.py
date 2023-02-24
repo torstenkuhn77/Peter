@@ -6,8 +6,8 @@ from colorlog import ColoredFormatter
 class Logger:
 
     def __init__(self, level = logging.DEBUG, config = 'Logging.conf'):
-        self.logLevel = logging.DEBUG       
-        logging.config.fileConfig(config)
+        self.logLevel = logging.DEBUG
+        logging.config.fileConfig(config, disable_existing_loggers=False)
         # überschreibt den root Consolen Handler mit einem Colored Formatter
         logLevel = level
         LOGFORMAT_CONSOLE = "%(log_color)s%(asctime)s-%(name)s-%(levelname)s: %(message)s%(reset)s"

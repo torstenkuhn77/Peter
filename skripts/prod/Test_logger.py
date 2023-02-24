@@ -4,6 +4,15 @@ import logging.config
 # pip install colorlog
 from colorlog import ColoredFormatter
 
+# from Logger import Logger
+
+# logScreen = Logger().GetLogger("Screen")
+
+SoLo_Text = "SolarLog "
+PVmin = 100
+
+# logScreen.log(logging.INFO, SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
+
 try:
     logging.config.fileConfig('Logging.conf')
 except:
@@ -20,14 +29,14 @@ log = logging.getLogger()       # root logger
 log.setLevel(LOG_LEVEL)
 log.addHandler(stream)
 
-logging.debug("Hallo")
-logging.info("Torsten")
-logging.error("dies")
-logging.fatal("ist")
-logging.warn("ein")
-logging.critical("Test")
+logging.debug(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
+logging.info(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
+logging.error(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
+logging.fatal(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
+logging.warn(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
+logging.critical(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
 
-log = logging.getLogger("Sensor")   # named logger Sensor
+log = logging.getLogger("Relais")   # named logger Relais
 log.setLevel(LOG_LEVEL)
 log.addHandler(stream)
 

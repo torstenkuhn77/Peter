@@ -9,7 +9,6 @@
 # dort : Example 4 : Share a global Variable Across Python Modules
 #############################################################################################
 
-
 # Variablen für Übergabe an bzw. aus Solar-Log
 # lokale fixe IPV4 Adresse :
 # 169.254.xx.yy letzte 4 Stellen = letzte 4 Stellen der SN des Solar-Log
@@ -28,33 +27,43 @@ RelList = ['WK1','WK2','WK3','WK4','GK1','KK1','KK2']
 # also nicht BK1,DK1 , HK2,DK2 , one-wire 
 RelTab = {
     ##### Wohnzimmer Relais WK1 (physisch) #################################
-    "WK1"       : 12,    # PIN 32 RPI Farbe orange
+    "WK1"       : 12,    # PIN 32 RPI Farbe orange,
+    "WK1_PIN"   : 32,
     "WK1_Log"   : True,  # True = Ja,Logsatz  False = Nein 
     "WK1_Funk"  : 'Tagbetrieb                             ',
     ##### Wohnzimmer Relais WK2 (physisch) #################################
     "WK2"       : 16,    # PIN 36 RPI Farbe blau
+    "WK2_PIN"   : 36,
     "WK2_Log"   : True,  # True = Ja,Logsatz  False = Nein 
     "WK2_Funk"  : 'boost (Mischer öffnen)                 ',
     ##### Wohnzimmer Relais WK3 (physisch) #################################
     "WK3"       : 20,    # PIN 38 RPI Farbe braun
+    "WK3_PIN"   : 38,
     "WK3_Log"   : False, # True = Ja,Logsatz  False = Nein 
     "WK3_Funk"  : 'ping Funktemperaturstation TFA 3035    ',
     ##### Wohnzimmer Relais WK4 (physisch) #################################
     "WK4"       : 13,    # PIN 33 RPI Farbe grau reserviert für Unterbrechung ONE-Wire Bus
+    "wk4_PIN"   : 33,
     "WK4_Log"   : True,  # True = Ja,Logsatz  False = Nein 
     "WK4_Funk"  : 'Unterbrechung ONE-Wire Bus             ',
     ##### Keller Relais GK1 (physisch) #####################################
     "GK1"       : 21,    # PIN 40 RPI Farbe grün
+    "GK1_PIN"   : 40,
     "GK1_Log"   : False, # True = Ja,Logsatz  False = Nein 
     "GK1_Funk"  : 'Garten                                 ',
     ##### Keller Relais KK1 (physisch) und zugehörige BK1,DK1 (logisch) ####
     "KK1"       : 19,    # PIN 35 RPI Farbe weiß
+    "KK1_PIN"   : 35,
     "KK1_Log"   : True,  # True = Ja,Logsatz  False = Nein 
     "KK1_Funk"  : 'Boiler Nacht(BK1)- / Direktladung(DK1) ',
+    ############################################################
     "BK1"       : 19,    # PIN 35
+    "BK1_PIN"   : 35,
     "BK1_Log"   : True,  # True = Ja,Logsatz  False = Nein 
     "BK1_Funk"  : 'Boiler Nachttarif-Ladung               ',
+    ############################################################
     "DK1"       : 19,    # PIN 35
+    "DK1_PIN"   : 35,
     "DK1_Log"   : True,  # True = Ja,Logsatz  False = Nein 
     "DK1_Funk"  : 'Boiler Direkt-Ladung                   ',
     "DK1_Hist"  : False, # Histerese Schalter Boiler Direkt-Ladung initial aus
@@ -70,9 +79,11 @@ RelTab = {
     "DK2_Funk"  : 'Kessel Direkt-Ladung                   ',
     "DK2_Hist"  : False, # Histerese Schalter Kessel Direkt-Ladung initial aus
     ##### one-wire bus , kein Relais physisch vorhanden #######################
-    "one-wire"  : 4,     # PIN  7 RPI Farbe gelb
+    "one-wire"  : 4,     # PIN  7 RPI Farbe gelb,
+    "one-wire_PIN" : 7,
+    "one-wire_Log" : True,
     "o-w_Funk"  : 'one-wire bus , nicht geschaltet !!!    '
-         }
+}
 
 # LogDatei für Relaissteuerung
 RelLogDir  = '/home/pi/skripts/prod'

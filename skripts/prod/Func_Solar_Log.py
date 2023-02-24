@@ -41,8 +41,6 @@ init(autoreset=True)
 #   115 - Wh Summierter Gesamtverbrauch, alle Ver-bauchszähler
 #   116 - Wp Installierte Generatorleistung
 
-
-
 def Lesen (localIP) :   # Daten vom Solar-Log einlesen und verarbeiten
     try:                # update der JSON-Schnittstelle erfolgt alle 15 sec,
         GVS.SolarLog_Verbrauch = 0
@@ -61,9 +59,8 @@ def Lesen (localIP) :   # Daten vom Solar-Log einlesen und verarbeiten
 
         response = urllib.request.urlopen(req, jb)       # Einlesen
         
-        if response.getcode()!= 200 :
-            Text = Text + Fore.YELLOW + "Fehler Solar_Log.Lesen JSON Schnittstelle code : " + response.getcode() + Fore.RESET
-              
+        if response.getcode() != 200:
+            Text = Text + Fore.YELLOW + "Fehler Solar_Log.Lesen JSON Schnittstelle code : " + response.getcode() + Fore.RESET             
         else :
             cb = response.read()
             s = cb.decode('ascii')     
@@ -75,18 +72,20 @@ def Lesen (localIP) :   # Daten vom Solar-Log einlesen und verarbeiten
             if lut == "ACCESS DENIED" :
                 Text = Text + Fore.YELLOW + "Fehler Solar_Log.Lesen JSON Schnittstelle " + lut + Fore.RESET
             else :
-                day    = lut[0:2] + ' '                        # Konvertierung zum üblichen timestamp
+                day    = lut[0:2] + ' '                   # Konvertierung zum üblichen timestamp
                 month  = lut[3:5] + '.'
-#                 year   = lut[6:8]
+#               year   = lut[6:8]
                 year   = time.strftime("%Y.")
                 Zeit   = lut[9:17]
                 Text = year + month + day + Zeit + ' Fotovoltaik '
                                                             # update globale Variablen in GVS
                 GVS.SolarLog_Verbrauch = round(current["801"]["170"]["110"]/ 1000 ,2) # 110 siehe oben
                 GVS.SolarLog_Erzeugung = round(current["801"]["170"]["101"]/ 1000 ,2) # 101 siehe oben
-                Bezug                  = round((GVS.SolarLog_Erzeugung - GVS.SolarLog_Verbrauch),2)
+                Bezug                  = round((GVS.SolarLog_Erzeugung - GVS.SolarLog_Verbrauch), 2)
+                
                 Text = Text + "Verbrauch " + Fore.RED + str(GVS.SolarLog_Verbrauch) + Fore.RESET
                 Text = Text + " Erzeugung " + Fore.YELLOW + str(GVS.SolarLog_Erzeugung) + Fore.RESET
+                
                 if Bezug >= 0 :
                     Text = Text + " Einspeisung " + Fore.GREEN + str(Bezug)
                 else :

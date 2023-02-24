@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from Sensor import Sensor
-from Sensor import Sensors
+from SensorClasses import Sensor
+from SensorClasses import Sensors
 
-#Sensors wrapped GVS Konfiguration objektorientiert
+#Sensors wrapped GVS Konfiguration as a class
 
-# Sensors implementiert Iterator protokoll, so kann man ziemlich einfach drüber iterieren 
+# Sensors implements iterator protocol, easier to enumerate 
 for s in Sensors():
     print(s.sensorType)
     print(s.sensorName)

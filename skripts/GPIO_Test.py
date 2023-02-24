@@ -26,5 +26,9 @@ while 1:
     # LED aus
     GPIO.output(11, GPIO.LOW)
 
+    retcode = GPIO.input(18)
+
+    print("GPIO.input(18) == " + retcode)
+
     # Warte 100 ms
     time.sleep(0.1)
