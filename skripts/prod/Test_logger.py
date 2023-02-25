@@ -1,3 +1,4 @@
+import os
 import traceback
 import logging
 import logging.config
@@ -18,6 +19,8 @@ try:
 except:
     print(traceback.format_exc())
 
+os.system('clear')
+
 # überschreibt den Consolen Handler mit einem Colored Formatter
 LOG_LEVEL = logging.DEBUG
 LOGFORMAT_CONSOLE = "%(log_color)s%(asctime)s-%(name)s-%(levelname)s: %(message)s%(reset)s"
@@ -29,8 +32,15 @@ log = logging.getLogger()       # root logger
 log.setLevel(LOG_LEVEL)
 log.addHandler(stream)
 
+logging.error('Tagbetrieb erst ab PVmin')
+
+print(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
 logging.debug(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
-logging.info(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
+
+msg = 'Tagbetrieb erst ab PVmin'
+
+logging.info(f"SolarLog {msg}: {PVmin}")
+
 logging.error(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
 logging.fatal(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
 logging.warn(SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)

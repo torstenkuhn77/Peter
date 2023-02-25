@@ -4,15 +4,15 @@
 # -*- coding: utf-8 -*-   
 
 # System- und fremde Funktionen ###########################################################
-import time,sys ,RPi.GPIO as GPIO ,json
+import time, sys, RPi.GPIO as GPIO, json, os
 import logging 
 from Logger import Logger
 
 from RelaisList import RelaisList
 from SensorClasses import SensorList
+from SolarLog import SolarLog
 
 # eigene externe Routinen #################################################################
-import Func_Sens           # Funktion zum Auslesen eines Temperatursensors
 import Func_Relais         # Funktion zum Set / Reset von Relais
 import Func_Solar_Log      # Funktion zum Lesen aus Solar-Log JSON Schnittstelle
 import Func_Geraet         # Funktion Ausgabe Gerätetemperatur , Prüfung Nachtaufladung und ob Histerese ein / aus / bleibt 
@@ -24,9 +24,12 @@ sensorList = SensorList()
 # Globale Relais Liste
 relaisList = RelaisList()
 
+solarLog = SolarLog(GVS.SolarLog_localIP)
+
 log = Logger() 
 logScreen = log.GetLogger("Screen") # nur Console Ausgaben
 logMain = log.GetLogger("Main")     # Console/File Ausgaben
+logSolarLog = log.GetLogger("SolarLog")
 
 try:
     # Initialisierung des Programms und Versionsangabe
@@ -39,18 +42,18 @@ try:
     # Routine bei Neustart
     # Logsatz bei Neustart in Logdatei schreiben
     
-    print()
+    os.system('Clear') # Bildschirm löschen
     TextString = 'Neustart Entladesteuerung  ' + Version + '  Initialisierung :'
     logMain.log(logging.INFO, TextString)
 
     # Initialisierung / Reset aller Relais
     # Setzen Parameter zur Initialisierung aller Relais
     drucken      = True           # True = drucken , False = nein
-    loggen       = 'RelTab'       # aus RelTab oder True = loggen , False = nein
-    RELAIS       = 'alle'         # alle Relais wie in Relais-Tabelle GVS.RelTab() definiert
+    loggen       = True           # aus RelTab True = loggen , False = nein
     # Initialisierung durchführen Schalten , ggf.Ergebnis drucken , loggen
     Schalter     = False         # True = ein , False = aus
-    Func_Relais.Reset(relaisList, RELAIS, Schalter, drucken, loggen)
+    
+    relaisList.ResetAll(Schalter, drucken, loggen)  # durch Relais Liste iterieren und alle zurücksetzen
 
     # Endlosschleife für jeden weiteren Verarbeitungsvorgang solange bis Abbruch
     while True :
@@ -83,18 +86,19 @@ try:
         
         while not Ergebnis and i_les_Sens < i_les_Sens_max :
             i_les_Sens = i_les_Sens + 1
+            
             Ergebnis = sensorList.ReadAll(Typ)
 
             TextString = 'Ergebnis Auslesen aller Sensoren '
             TextString = TextString + Typ + ' ' + str(i_les_Sens) + '. Versuch '
             
-            if not Ergebnis :              # Fehler --> Nachlesen
+            if not Ergebnis:              # Fehler --> Nachlesen
                 if i_les_Sens == i_les_Sens_max :  # Nachlesen erfolglos max Anzahl Leseversuche erreicht
                     TextString = 'Auslesen aller Sensoren '
                     TextString = TextString + Typ + ' auch ' + str(i_les_Sens) + '. und letzter Versuch '
                     TextString = TextString + ' erfolglos '
                     
-                    logScreen.log(logging.critical, TextString)
+                    logScreen.log(logging.ERROR, TextString)
                     
                     raise AssertionError("Auslesen der Temperaturwerte fehlgeschlagen.")
                 else :                             # x Mal Nachlesen , ONE-Wire Bus reset
@@ -107,34 +111,26 @@ try:
                     # ONE-Wire Bus unterbrechen und neuer Versuch ##############################
                     # Setzen Parameter zur Unterbrechung des ONE-Wire Bus
                     drucken    = True           # True = ja , False = nein
-                    loggen     = 'RelTab'       # aus RelTab oder True = ja , False = nein
+                    loggen     = True           # benutze RelTab True = ja , False = nein
                     RELAIS     = 'WK4'          # Relais wie in Relais-Tabelle GVS.RelTab() definiert
                     # Schaltvorgang zur Unterbrechung ONE-Wire Bus Schalten , Ergebnis drucken , loggen
                     Schalter   = True           # True = GND Ausschalten
-                    Func_Relais.Set(relaisList, RELAIS, Schalter, drucken, loggen)
                     
-                    if 'Fehler' in U_Ergebnis : # Fehler beim Ausschalten
-                        print (Fore.RED   + 20 * ' ' + 'Abbruch : Fehler beim Ausschalten ONE-Wire Bus ')
-                        raise AssertionError (U_Ergebnis)
-                    else :
-                        print (U_Ergebnis)
+                    relais = relaisList.findRelais(RELAIS)
+
+                    if (relais != None):
+                        relais.Set(Schalter, drucken, loggen)
                     
-                    time.sleep (les_wait)       # Warten vor wieder Einschalten !
-                    Schalter   = False          # False = GND wieder Einschalten
-                    U_Ergebnis = str((Func_Relais.Set(relaisList, RELAIS, Schalter, drucken, loggen)))
-                    if 'Fehler' in U_Ergebnis : # Fehler beim Einschalten
-                        print (Fore.RED   + 20 * ' ' + 'Abbruch : Fehler beim Einschalten ONE-Wire Bus ')
-                        raise AssertionError (U_Ergebnis)
-                    else :
-                        print (U_Ergebnis)
+                        time.sleep(les_wait)        # Warten vor wieder Einschalten !
+                        Schalter   = False          # False = GND wieder Einschalten
+                        relais.Set(RELAIS, Schalter, drucken, loggen)))
                     
                     time.sleep (les_wait)       # Warten vor dem nächsten Auslesen !
                     # Ende ONE-Wire Bus zurücksetzen und neuer Versuch #########################
-                
-                Func_Sens.PrintResults(TextString)
-                
-        # Informationen aufbereiten , Parameter setzen , prüfen , Istwerte ermitteln
-        
+            # durch die Sensor Liste gehen und die Ergebnisse (Temperatur, Fehler) ausdrucken
+            sensorList.PrintResults(Typ)
+               
+        # Informationen aufbereiten , Parameter setzen , prüfen , Istwerte ermitteln       
         # JSON Datei mit Parametern einlesen
         with open('/home/pi/skripts/prod/Parameter.json') as f:
             config_raw = f.read()
@@ -186,23 +182,37 @@ try:
         NachtFaktor = config['Parameter']['Zyklus']['NachtFak']
         
         if iverarb == 1 :  # Informationen zu Steuerungsparametern , Nachttarif etc. nur beim 1. Lauf
-            print (19 * ' ','(Zyklus Tag', wait ,'Nachtfaktor', NachtFaktor, 'Zyklus Nacht' , wait * NachtFaktor ,')')
+            logScreen.log(logging.INFO, 19 * ' ' + f'(Zyklus Tag {wait} Nachtfaktor {NachtFaktor} Zyklus Nacht {wait * NachtFaktor}')
         
         # Beginn Verarbeitung #########################################################################
         # Ausgabe Istwerte bei jedem Lauf unabhängig Raumheizung oder Warmwasserbereitung
         
-        # Fotovoltaik-Informationen lesen und ausgeben          # lokale IP des Solar-Log aus GVS
-        SoLo_Text = Func_Solar_Log.Lesen(GVS.SolarLog_localIP)  # Funktion Solar-log aus JSON-Datei lesen  
-        if 'Fehler' in SoLo_Text :                              # Solar-log Fehler beim Lesen Warnung ausgeben
-            SoLo_Text = ' Warnung : ' + SoLo_Text
+        # Fotovoltaik-Informationen lesen und ausgeben          # lokale IP des Solar-Log aus GVS 
+                
+        if not solarLog.Read():                              # Solar-log Fehler beim Lesen Warnung ausgeben
+            SoLo_Text = 'Photovoltaik Warnung : ' + solarLog.lastError
             SoLo_Bezug     = 0
             Solo_Erzeugung = 0                                  # Erzeugung und Bezug mit 0 angenommen
             logScreen.log(logging.WARNING, SoLo_Text)
             logScreen.log(logging.WARNING, 20 * ' ' + 'Erzeugung und Bezug für weitere Verarbeitung mit 0 angenommen !')
         else :                                                  # Solar-log Bezug und Erzeugung ermitteln
-            SoLo_Bezug = (round((GVS.SolarLog_Erzeugung - GVS.SolarLog_Verbrauch), 2))
-            Solo_Erzeugung = round(GVS.SolarLog_Erzeugung, 2)
-            logScreen.log(logging.INFO, SoLo_Text,'Tagbetrieb erst ab PVmin', PVmin)
+            GVS.SolarLog_Erzeugung = solarLog.Erzeugung # Abwärtskompatibilität
+            GVS.SolarLog_Verbrauch = solarLog.Verbrauch
+
+            SoLo_Bezug = solarLog.Bezug
+            Solo_Erzeugung = solarLog.Erzeugung
+
+            SoLo_Text = "Verbrauch " + str(GVS.SolarLog_Verbrauch)
+            logSolarLog.log(logging.ERROR, SoLo_Text)
+            logSolarLog.log(logging.WARNING, " Erzeugung " + str(GVS.SolarLog_Erzeugung))
+            SoLo_Text = SoLo_Text + " Erzeugung " + str(GVS.SolarLog_Erzeugung)
+
+            if solarLog.Bezug >= 0 :
+                logSolarLog.log(logging.INFO, " Einspeisung " + str(solarLog.Bezug) + ' KW ')
+            else :
+               logSolarLog.log(logging.ERROR, " Bezug " + str(solarLog.Bezug) + ' KW ')
+
+            logSolarLog.log(logging.INFO, SoLo_Text + f' Tagbetrieb erst ab PVmin {PVmin}')
         
         # Prüfung , ob Raumheizung pausiert                       # Pause von ... bis ...  ?
         # Raumheizung pausieren , wenn PV-Überschuß nicht ausreichend und
