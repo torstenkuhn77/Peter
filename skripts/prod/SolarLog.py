@@ -10,10 +10,6 @@ import urllib.request
 from urllib.error import URLError, HTTPError
 from dataclasses import dataclass, field
 import time
-import logging 
-from Logger import Logger
-
-import GVS          # eigene globale Variablen
 
 #   Beschreibung Solar-Log JSON Schnittstellendaten : ##################
 #   100 - LastUpdateTime
@@ -34,6 +30,7 @@ import GVS          # eigene globale Variablen
 #   115 - Wh Summierter Gesamtverbrauch, alle Ver-bauchszähler
 #   116 - Wp Installierte Generatorleistung
 
+@dataclass
 class SolarLog:
     ipAddress: str
     Verbrauch: float
@@ -43,11 +40,8 @@ class SolarLog:
     lastError: str
     Code: int
 
-    _log: Logger
-
     def __init__(self, ipAddr: str) -> None:
         self.ipAddress = ipAddr
-        self._log = Logger().GetLogger("SolarLog")
 
     def Read(self)->bool:   # Daten vom Solar-Log einlesen und verarbeiten
         try:                # Update der JSON-Schnittstelle erfolgt alle 15 sec

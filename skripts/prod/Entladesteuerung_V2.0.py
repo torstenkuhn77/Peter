@@ -4,17 +4,15 @@
 # -*- coding: utf-8 -*-   
 
 # System- und fremde Funktionen ###########################################################
-import time, sys, RPi.GPIO as GPIO, json, os
+import time, sys, json, os
 import logging 
 from Logger import Logger
 
-from RelaisList import RelaisList
-from SensorClasses import SensorList
-from SolarLog import SolarLog
+from RelaisList import RelaisList       # Funktionen zum Set / Reset von Relais
+from SensorClasses import SensorList    # Funktionen zum Lesen der Temperatur Relais
+from SolarLog import SolarLog           # Funktionen zum Lesen aus Solar-Log JSON Schnittstelle
 
 # eigene externe Routinen #################################################################
-import Func_Relais         # Funktion zum Set / Reset von Relais
-import Func_Solar_Log      # Funktion zum Lesen aus Solar-Log JSON Schnittstelle
 import Func_Geraet         # Funktion Ausgabe Gerätetemperatur , Prüfung Nachtaufladung und ob Histerese ein / aus / bleibt 
 import GVS                 # Zwischenspeicher eigene globale Variablen
 # eigene externe Routinen Ende ############################################################
@@ -23,7 +21,7 @@ import GVS                 # Zwischenspeicher eigene globale Variablen
 sensorList = SensorList()
 # Globale Relais Liste
 relaisList = RelaisList()
-
+# SolarLog
 solarLog = SolarLog(GVS.SolarLog_localIP)
 
 log = Logger() 
@@ -294,47 +292,46 @@ try:
             if 'Fehler' in e :                    # Abbruch bei Programmfehler
                 raise AssertionError (e)
             else :                                # Ausgabe Temperatur , Direkt- und Nachtladung
-                print (e)
+                logScreen.log(logging.INFO, e)
 
             # Ende Ausgabe Kesseltemperatur #################################################################################
 
             # Ausgabe Vorlauftemperatur
             if VTakt > VTmax :
-                print ("- Vorlauftemperatur aktuell",VTakt,"max",VTmax,'überschritten')
+                logScreen.log(logging.INFO, f'- Vorlauftemperatur aktuell {VTakt} max {VTmax} überschritten')
             else :
-                print ("- Vorlauftemperatur aktuell",VTakt,"max",VTmax)
+                logScreen.log(logging.INFO, f'- Vorlauftemperatur aktuell {VTakt} max {VTmax}')
             
             # Entscheid, ob boost eingeschaltet wird
             if Tagsteuerung :
                 boost = True
             else :
                 boost = False
-                print ('- boost             nicht aktiv bei Nachtabsenkung')
+                logScreen.log(logging.INFO, '- boost             nicht aktiv bei Nachtabsenkung')
             if SoLo_Bezug < 0  and boost :
                 boost = False
-                print ('- boost             nicht aktiv , kein PV-Überschuss (Bezug ' , SoLo_Bezug, ')')
+                logScreen.log(logging.INFO,f'- boost             nicht aktiv , kein PV-Überschuss (Bezug {SoLo_Bezug})')
             if KTakt < KTboost and boost :
                 boost = False
-                print ('- boost             nicht aktiv Kesseltemperatur unter ',KTboost)
+                logScreen.log(logging.INFO,f'- boost             nicht aktiv Kesseltemperatur unter {KTboost}')
             if VTakt > VTmax   and boost :
                 boost = False
-                print ('- boost             nicht aktiv Vorlauftemperatur größer ',VTmax)
+                logScreen.log(logging.INFO,f'- boost             nicht aktiv Vorlauftemperatur größer {VTmax}')
             if RTakt > RTmax   and boost :
                 boost = False
-                print ('- boost             nicht aktiv Raumtemperatur größer ',RTmax)
+                logScreen.log(logging.INFO,f'- boost             nicht aktiv Raumtemperatur größer {RTmax}')
             if DTakt < BZvon   and boost :
                 boost = False
-                print ('- boost             nicht aktiv erst ab ',BZvon,' verfügbar')
+                logScreen.log(logging.INFO,f'- boost             nicht aktiv erst ab {BZvon} verfügbar')
             if DTakt > BZbis   and boost :
                 boost = FalseSchalter     = True
-                print ('- boost             nicht aktiv nur bis ',BZbis,' verfügbar')
+                logScreen.log(logging.INFO,f'- boost             nicht aktiv nur bis {BZbis} verfügbar')
             if boost :
-                print ("- boost             aktiv von ",BZvon,' bis ',BZbis,' bei ',KTboost,' Einspeisung ',SoLo_Bezug)
+                logScreen.log(logging.INFO,f'- boost             aktiv von {BZvon} bis {BZbis} bei {KTboost} Einspeisung {SoLo_Bezug}')
             else :
                 if RTakt < RTmin :
                     boost = True
-                    print (Fore.RED +
-                       "- boost             aktiv weil Raumtemperatur " + str(RTakt) + " unter Minimum " + str(RTmin) + '!')
+                    logScreen.log(logging.INFO, f'- boost             aktiv weil Raumtemperatur {RTakt} unter Minimum {RTmin}!')
         else :
             if not 'pausiert' in TextString :
                 print ('Raumheizung         Steuerung ausgeschaltet')
@@ -345,8 +342,8 @@ try:
         # Ausgabe Istwerte nur relevant für Warmwasserbereitung
         if Warmwasser :
             TextString = 'Warmwasserbereitung eingeschaltet '
-            TextString = TextString + '(Nachttarif (NT) ' + NT_Zeit_Start + ' bis ' + NT_Zeit_Ende + ')'
-            print (TextString)
+            TextString = TextString + f'(Nachttarif (NT) {NT_Zeit_Start} bis {NT_Zeit_Ende}'
+            logScreen.log(logging.INFO, TextString)
             
             # Ausgabe Boilertemperatur , Prüfung Nachtaufladung und ob Histerese ein / aus / bleibt #########################
 
@@ -359,12 +356,12 @@ try:
             if 'Fehler' in e :                    # Abbruch bei Programmfehler
                 raise AssertionError (e)
             else :                                # Ausgabe Temperatur , Direkt- und Nachtladung
-                print (e)
+                logScreen.log(logging.INFO, e)
 
            # Ende Ausgabe Boilertemperatur #################################################################################
         
         else :
-            print ('Warmwasserbereitung Steuerung ausgeschaltet')
+            logScreen.log(logging.INFO, 'Warmwasserbereitung Steuerung ausgeschaltet')
         
         # Abbruch , wenn weder Raumheizung noch Warmwasser eingeschaltet
         if not (Raumheizung or Warmwasser or Sonstige) :
@@ -388,16 +385,18 @@ try:
             drucken      = True             # True = ja , False = nein
             # für Tagbetrieb Tagsteuerung=True=einschalten , für Nachtbetrieb Tagsteuerung=False=ausschalten
             # Schaltvorgang durchführen
-            print (Func_Relais.Set (RELAIS , Tagsteuerung , drucken , loggen))
-            time.sleep(1)
-            
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None: 
+                relais.Set(Tagsteuerung, drucken, loggen))
+          
             # Setzen Parameter zur Schaltung von Relais WK2 für die Funktion boost
             RELAIS       = 'WK2'            # Relais wie in Relais-Tabelle definiert
             drucken      = True             # True = ja , False = nein
             # boost=True=einschalten , boost=False= ausschalten
             # Schaltvorgang durchführen
-            print (Func_Relais.Set (RELAIS , boost , drucken , loggen))
-            time.sleep(1)
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None:
+                relais.Set(boost, drucken, loggen)            
                         
             # Schaltung Relais K2 für den Kessel im Keller
             # Parameter bereits gesetzt oben durch Funktion Func_Geraet.pruef
@@ -405,8 +404,9 @@ try:
             Schalter     = Rel_SchKessel    # True = ein , False = aus
             drucken      = True             # True = ja , False = nein
             # Schaltvorgang durchführen            
-            print (Func_Relais.Set (RELAIS , Schalter , drucken , loggen))
-            time.sleep(1)
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None:
+                relais.Set(Schalter, drucken, loggen)
             
         #  keine Raumheizung --> alle Relais ausschalten , die davon betroffen sind !           
         else :
@@ -416,159 +416,134 @@ try:
             Schalter         = False
             drucken          = False
             RELAIS = 'WK1'
-            TextString = (Func_Relais.Set (RELAIS , Schalter , drucken , loggen))
-            if TextString != () : print (TextString)
-            time.sleep(1)                   # 1 sec warten
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None:
+                relais.Set(Schalter, drucken, loggen)
             RELAIS = 'WK2'
-            TextString = (Func_Relais.Set (RELAIS , Schalter , drucken , loggen))
-            if TextString != () : print (TextString)
-            time.sleep(1)                   # 1 sec warten
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None:
+                relais.Set(Schalter, drucken, loggen)
             RELAIS = 'KK2'  # KK2 = HK2 = DK2 , gleiches Relais
-            TextString = (Func_Relais.Set (RELAIS , Schalter , drucken , loggen))
-            if TextString != () : print (TextString)
-            time.sleep(1)                   # 1 sec warten
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None: 
+                relais.Set(Schalter, drucken, loggen)
 
         #  Aktionen Boiler nur , wenn Warmwasser eingeschaltet ist !
         if Warmwasser :
-            TextString = '- Warmwasser    :'
-            print (TextString)      
+            logScreen.log(logging.INFO, '- Warmwasser    :')
             # Schaltung Relais K1 für den Boiler im Keller
             # Parameter bereits gesetzt oben durch Funktion Func_Geraet.pruef
             RELAIS       = Rel_NameBoiler   # Relais wie in Relais-Tabelle definiert
             Schalter     = Rel_SchBoiler    # True = ein , False = aus
             drucken      = True             # True = ja , False = nein
             # Schaltvorgang durchführen
-            print (Func_Relais.Set (RELAIS , Schalter , drucken , loggen))
-            time.sleep(1)
-
-                     
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None: 
+                relais.Set(Schalter, drucken, loggen)
+                    
         #  Keine Warmwasserbereitung -->  Relais Boiler ausschalten          
         else :  
-            TextString = Fore.YELLOW + 'Warmwasserbereitung und zugehörige Relais KK1<BK1,DK1> ausgeschaltet'  
-            print (TextString)
+            logScreen.log(logging.WARNING, TextString)
             # Schaltvorgang aus durchführen
             Schalter         = False
             drucken          = False
             RELAIS = 'KK1'   # KK1 = BK1 = DK1 , gleiches Relais
-            TextString = (Func_Relais.Set (RELAIS , Schalter  , drucken , loggen))
-            if TextString != () : print (TextString)
-            time.sleep(1)                   # 1 sec warten
-
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None: 
+                relais.Set(Schalter, drucken, loggen)
+ 
         # Sonstige Schaltvorgänge
         if Sonstige :
-            TextString =  '- Sonstige      :'
-            print (TextString)
+            logScreen.log(logging.INFO, '- Sonstige      :')
             
             # Setzen Parameter zum Pingen von Relais WK3 für TFA 3035 pingen
             RELAIS       = 'WK3'            # Relais wie in Relais-Tabelle definiert
             drucken      = False            # True = ja , False = nein
             Schalter     = True             # Ping ein
             # Schaltvorgang durchführen
-            Func_Relais.Set (RELAIS , Schalter , drucken , loggen)
-            time.sleep(1)                   # 1 sec warten
-            Schalter     = False            # Ping aus
-            # Schaltvorgang durchführen
-            Func_Relais.Set (RELAIS , Schalter , drucken , loggen)
-            TextString = Fore.CYAN +' Relais '+ RELAIS + ' TFA 3035 angepingt ohne weitere Aktion ' 
-            TextString = time.strftime("%Y.%m.%d %H:%M:%S") + TextString
-            print (TextString)
-            time.sleep(1)
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None: 
+                relais.Set(Schalter, drucken, loggen)                
+                Schalter     = False            # Ping aus
+                # Schaltvorgang durchführen
+                relais.Set(Schalter, drucken, loggen)
+                logScreen.log(logging.WARNING, f' Relais {RELAIS} TFA 3035 angepingt ohne weitere Aktion')            
             
             # Setzen Parameter zum Schalten von Relais GK1 Garten
             RELAIS       = 'GK1'            # Relais wie in Relais-Tabelle definiert
             drucken      = True             # True = ja , False = nein
-            TextString   = Fore.RESET + 20*' '
             PVmin        = 0.5 * PVmin
             if SoLo_Bezug >=  PVmin :       # nur einschalten , wenn ausreichender PV-Ertrag
                 Schalter     = True
-                TextString      = TextString + '(Einspeisung für Garten ausreichend ' + str(SoLo_Bezug) + ' >= 1/2 PVmin ' + str(PVmin) + ')'
+                TextString   = f'(Einspeisung für Garten ausreichend {SoLo_Bezug} >= 1/2 PVmin {PVmin})'
             else :
                 Schalter     = False
                 if SoLo_Bezug >= 0 :
-                    TextString  = TextString + '(Einspeisung für Garten nicht ausreichend ' + str(SoLo_Bezug) + ' < 1/2 PVmin ' + str(PVmin) + ')'
+                    TextString  = f'(Einspeisung für Garten nicht ausreichend {SoLo_Bezug} < 1/2 PVmin {PVmin})'
                 else :
-                    TextString  = TextString + '(Einspeisung für Garten nicht ausreichend , da Bezug negativ ' + str(SoLo_Bezug) + ')'
+                    TextString  = f'(Einspeisung für Garten nicht ausreichend , da Bezug negativ {SoLo_Bezug})'
             # Schaltvorgang durchführen
-            print (Func_Relais.Set (RELAIS , Schalter , drucken , loggen))
-            print (TextString)
-            time.sleep(1)                   # 1 sec warten
-        
+            relais = relaisList.findRelais(RELAIS)
+            if not relais is None: 
+                relais.Set(Schalter, drucken, loggen)
+            
+            logScreen.log(logging.INFO, TextString)
+            
         #  keine Sonstige --> alle Relais ausschalten , die davon betroffen sind !   
         else :
-            TextString = Fore.YELLOW + 'Sonstige            und zugehörige Relais WK3,GK1 ausgeschaltet'  
+            logScreen.log(logging.WARNING, 'Sonstige            und zugehörige Relais WK3,GK1 ausgeschaltet')  
             print (TextString)
             # Schaltvorgang aus durchführen
             Schalter         = False
             drucken          = False
-            RELAIS = 'WK3'   # ping-Relais
-            TextString = (Func_Relais.Set (RELAIS , Schalter  , drucken , loggen))
-            if TextString != () : print (TextString)
-            time.sleep(1)                   # 1 sec warten
-            RELAIS = 'GK1'   # Garten-Relais
-            TextString = (Func_Relais.Set (RELAIS , Schalter  , drucken , loggen))
-            if TextString != () : print (TextString)
-            time.sleep(1)                   # 1 sec warten   
+            ARRAY_RELAIS = ['WK3', 'GK1']   # ping-Relais und Garten Reais
+            for relaisName in ARRAY_RELAIS:
+                relais = relaisList.findRelais(RELAIS)
+                if not relais is None: 
+                    relais.Set(Schalter, drucken, loggen)
         # Ende Schaltvorgänge #######################################################################################
         if not Tagsteuerung : wait = wait * NachtFaktor # in der Nacht verlängerter Zyklus
         if iverarb == 1   : wait = wait / 2             # beim 1. Lauf nur 1/2 Zeit warten
-        TextString = ' ENDE Entladesteuerung     ' + str(iverarb + 1) + '. Lauf beginnt in ' + str(wait) + ' Sekunden ----------------'
-        TextString = time.strftime("%Y.%m.%d %H:%M:%S") + TextString
-        print (Fore.GREEN + TextString)
+        TextString = f' ENDE Entladesteuerung     {iverarb + 1}. Lauf beginnt in {wait} Sekunden ----------------'
+        logScreen.log(logging.INFO, TextString)
         
         # Ende Endlosschleife nächster Lauf zyklisch nach x Sekunden
-        print ()
+        logScreen.log(logging.INFO, "")
         time.sleep(wait)
     # while(true) Block Ende
-
+    END_TEXT = ''
 except KeyboardInterrupt as e :
     # Programm beendet mit CTRL+C oder Strg+C
-    print ()
     END_TEXT   = 'ENDE Entladesteuerung ' + Version
+    logMain.log(logging.INFO, END_TEXT)
     END_TEXT1  = 'mit KeyboardInterrupt (CTRL+C oder Strg+C)'
-    END_TEXTZ  = Fore.GREEN +  time.strftime("%Y.%m.%d %H:%M:%S") + ' '
-    END_TEXTZ1 = Fore.GREEN +  20 * ' '
-    print   (END_TEXTZ  + END_TEXT)                     # 1. Zeile Drucken           
-    print   (END_TEXTZ1 + END_TEXT1)                    # 2. Zeile Drucken
-    Logsatz (END_TEXT , True)                           # 1. Zeile Loggen und Drucken
-    Logsatz (END_TEXT1, False)                          # 2. Zeile Loggen , nicht Drucken  
-    END_TEXT = ''                                       # weiter zum Ende --> finally
-    
+    logMain.log(logging.INFO, END_TEXT1)
 except AssertionError as e :
     # Programm ABBRUCH mit AssertionError
-    print ()
     END_TEXT   = 'ABBRUCH Entladesteuerung ' + Version
     END_TEXT1  = 'mit AssertionError : '
-    END_TEXT2  = str(e)
-        
+    END_TEXT2  = str(e)        
 except Exception as e :
     # Programm ABBRUCH mit Exception
-    print ()
     END_TEXT   = 'ABBRUCH Entladesteuerung ' + Version
     END_TEXT1  = 'mit Exception : '
     END_TEXT2  = str(e)
-
 finally :
+    logScreen.log(logging.INFO, "")
     # Das Programm wird hier beendet
-    if END_TEXT == '' :                                     # ordnungsgemäß beendet
-        print ()
-        END_TEXT = 20 * ' ' + '---> Programm fehlerfrei beendet und' 
-        print (Fore.GREEN +  END_TEXT )
-    else :                                                  # Abbruch mit Assertion oder Exception
-        END_TEXTZ  = Fore.RED +  time.strftime("%Y.%m.%d %H:%M:%S") + ' '
-        END_TEXTZ1 = Fore.RED +  20 * ' '
-        print   (END_TEXTZ  + END_TEXT)                     # 1. Zeile Drucken           
-        print   (END_TEXTZ1 + END_TEXT1)                    # 2. Zeile Drucken
-        print   (END_TEXTZ1 + END_TEXT2)                    # 3. Zeile Drucken
-        Logsatz (END_TEXT, True)                            # 1. Zeile Loggen und Drucken
-        Logsatz (END_TEXT1, False)                          # 2. Zeile Loggen , nicht Drucken
-        Logsatz (END_TEXT2, False)                          # 3. Zeile Loggen , nicht Drucken       
+    if END_TEXT == '':                                      # ordnungsgemäß beendet
+        logScreen.log(logging.INFO, '---> Programm fehlerfrei beendet und')
+    else:                                                   # Abbruch mit Assertion oder Exception
+        logMain.log(logging.INFO, END_TEXT)                 # 1. Zeile Loggen und Drucken
+        logFile = Logger().GetLogger("Log")
+        logFile.log(logging.ERROR, END_TEXT1)               # 2. Zeile Loggen , nicht Drucken
+        logFile.log(logging.ERROR, END_TEXT2)               # 3. Zeile Loggen , nicht Drucken       
     # Initialisierung / Reset aller Relais
     # Setzen Parameter zur Initialisierung aller Relais
     drucken      = True           # True = ja , False = nein
-    loggen       = 'RelTab'       # aus RelTab ober True = ja , False = nein
-    RELAIS       = 'alle'         # alle Relais wie in Relais-Tabelle GVS.RelTab() definiert
+    loggen       = True           # True = ja , False = nein
     # Initialisierung durchführen Reset , ggf.Ergebnis drucken , loggen
     Schalter     = False         # True = ein , False = aus
-    print (Func_Relais.Reset (RELAIS , Schalter , drucken , loggen))
-    
+    relaisList.ResetAll(Schalter, drucken, loggen)
+
 #   sys.exit(0)  # wenn kein Fehler in die Console geschrieben werden soll

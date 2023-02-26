@@ -4,6 +4,18 @@
 from dataclasses import dataclass, field
 import time
 import GVS
+import logging 
+from Logger import Logger
+import random
+from functools import wraps
+
+def ReadTemperatureStub(fn):        # wird als Decorator benutzt um künstliche Temperaturwerte 
+    @wraps(fn)                      # zum Debuggen ohne Sensoren zu erzeugen
+    def wrapper(self):
+        self.temperature = round(random.uniform(10.00, 45.00), 2)
+        self.SetLastUpdate()
+        return True
+    return wrapper
 
 @dataclass
 class Sensor:
@@ -15,15 +27,16 @@ class Sensor:
     lastUpdate: str
     lastError: str
 
+    @ReadTemperatureStub    # im prod Decorator auskommentieren
     def ReadTemperature(self)->bool: # Aus Systembus Temperatur eines einzelnen Sensors auslesen  
         # Aus Systembus Temperatursensoren DS18B20 auslesen
-        line1und2 = ReadBus()                          # Liste füllen
+        line1und2 = self.ReadBus()                          # Liste füllen
         
         line1 = line1und2.pop(0)                       # Liste entladen       
         line2 = line1und2.pop(0)
 
         # lastUpdate timestamp setzen
-        self.SetLastUpdate();
+        self.SetLastUpdate()
 
         if 'Fehler' in line1 :                         # Abbruch bei Lesefehler im Systembus
             self.lastError = line1 + line2
@@ -108,41 +121,44 @@ class SensorList:
     def __next__(self):
         return next(self.sensorList)                                                
 
-    def ReadAll(self, Typ: str) -> str:  # aus Systembus alle Temperaturen zu allen Sensoren eines Typs auslesen
+    def ReadAll(self, Typ: str)->bool:   # aus Systembus alle Temperaturen zu allen Sensoren eines Typs auslesen
                                          # und in GVS.SensTab speichern und Rückgabe zum Druck aufbereiteter Textzeilen
-        
+    
+        Lesefehler = False
+
         for sens in self.sensorList:             # Über alle Sensoren iterieren und
             if sens.SensorType != Typ:
                 continue                                                                      
             
-            fErgebnis = sens.ReadTemperature()   # Temperaturwert des einzelnen Sensors auslesen
-                                                 # Prüfung , ob ausgelesener Wert fehlerhaft
+            # Temperaturwert des einzelnen Sensors auslesen
+            # Prüfung , ob ausgelesener Wert fehlerhaft
             
             # GVS.Senstab aus Kompatibilitätsgründen aktualisieren (eigentlich nicht mehr nötig)
-            if fErgebnis == False: # Fehler beim Auslesen, aus Kompatibiliät wird GVS.SensTab noch aktualisiert
+            if not sens.ReadTemperature():                    # Fehler beim Auslesen, aus Kompatibiliät wird GVS.SensTab noch aktualisiert
                 GVS.SensTab [sens.sensorName + '_Stp'] = sens.LastError
                 GVS.SensTab [sens.Sensorname + '_Tmp'] = sens.temperature
-                Lesefehler = True               # --> mindestens ein Lesefehler aufgetreten
-                # Textzeilen NOK fehlerhafte Sensoren aufbereiten
-                TextNOK = TextNOK + ' ' + sens.LastError                          # timestamp = Fehler ...
-                TextNOK = TextNOK + ' ' + sens.sensorName                         # Sensor
-                TextNOK = TextNOK + ' ' + '\n'                                    # neue Zeile
-                TextNOK = TextNOK + 20 * ' ' + sens.temperature                   # einrücken , Temperaturwert
-                TextNOK = TextNOK + ' ' + '\n' + 20 * ' '                         # neue Zeile , einrücken
+                Lesefehler = True                             # --> mindestens ein Lesefehler aufgetreten
             else :                                            # NEIN : nicht fehlerhaft ausgelesen
                 GVS.SensTab [sens.Sensorname + '_Stp'] = sens.LastUpdate
                 GVS.SensTab [sens.Sensorname + '_Tmp'] = sens.temperature
-                # Textzeilen OK fehlerfreie Sensoren aufbereiten
-                TextOK  = TextOK + ' ' + sens.sensorName        # Sensor
-                TextOK  = TextOK + ' ' + sens.temperature + ' ' # Temperaturwert in gleicher Zeile
-                    
-            if Lesefehler :                                     # ist mindestens ein Lesefehler aufgetreten ?
-                Text = Text + 'beim Auslesen der Sensoren ' + Typ + ' ist mindestens ein Fehler aufgetreten :' + '\n'
-                Text = Text + 19 * ' ' + TextOK + '\n' + 20 * ' ' + TextNOK
-            else :                                              # kein Lesefehler aufgetreten
-                Text = Text + time.strftime("%Y.%m.%d %H:%M:%S")
-                Text = Text + ' Temperatur aller Sensoren ' + Typ + ' gespeichert in GVS.SensTab :' + '\n'
-                Text = Text + 19 * ' ' + TextOK
         
-        return (Text)  # Rückgabe zum Druck aufbereiteter Textzeilen      
-        # Ende aus Systembus alle Temperatursensoren eines Typs auslesen und in GVS.SensTab speichern   
+        return Lesefehler  # Rückgabe zum Druck aufbereiteter Textzeilen      
+
+    def PrintResults(self, Typ: str)->None:
+        logSensor = Logger().GetLogger("Sensor") # Console/File Ausgaben
+
+        for sens in self.sensorList:             # Über alle Sensoren iterieren und Ergebnisse ausgeben
+            Text = ""
+            if sens.SensorType != Typ:
+                continue 
+            if sens.LastError != "":
+                Text = Text + ' ' + sens.LastError                          # timestamp = Fehler ...
+                Text = Text + ' ' + sens.sensorName                         # Sensor
+                Text = Text + ' ' + '\n'                                    # neue Zeile
+                Text = Text + 20 * ' ' + sens.temperature                   # einrücken , Temperaturwert
+                Text = Text + ' ' + '\n' + 20 * ' '                         # neue Zeile , einrücken
+            else:
+                # Textzeilen OK fehlerfreie Sensoren aufbereiten
+                Text  = Text + ' ' + sens.sensorName                        # Sensor
+                Text  = Text + ' ' + sens.temperature + ' '                 # Temperaturwert in gleicher Zeile
+            logSensor.log(logging.Info, Text)

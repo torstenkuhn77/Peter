@@ -2,14 +2,17 @@
 # -*- coding: utf-8 -*-
 
 from SensorClasses import Sensor
-from SensorClasses import Sensors
+from SensorClasses import SensorList
 
-#Sensors wrapped GVS Konfiguration as a class
+#Sensor wrapped GVS Konfiguration as a class
 
-# Sensors implements iterator protocol, easier to enumerate 
-for s in Sensors():
+# SensorList implements iterator protocol, easier to enumerate 
+for s in SensorList():
     print(s.sensorType)
     print(s.sensorName)
-    print()
+
+    s.ReadTemperature()
+
+    print(s.temperature)
 
 print('ready')

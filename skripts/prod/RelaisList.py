@@ -12,7 +12,7 @@ def create_relais_list():
     relaisList = list()
     # typisierte Relais Liste aus GVS RelTab und RelList erzeugen
     for relaisName in GVS.RelList:
-        gpio = GVS.RelTab.get(relaisName + "_GPIO")
+        gpio = GVS.RelTab.get(relaisName)
         pin = GVS.RelTab.get(relaisName + "_PIN")
         funk = GVS.RelTab.get(relaisName + "_Funk")
         log = GVS.RelTab.get(relaisName + "_Log")
@@ -20,10 +20,10 @@ def create_relais_list():
         if GVS.RelTab.get(relaisName + "_Hist"):
             hist = GVS.RelTab.get(relaisName + "_Hist")
         r = Relais()
-        r.Name = relaisName
-        r.Function=funk
-        r.GPIO = gpio
-        r.PIN=pin
+        r.name = relaisName
+        r.function=funk
+        r.gpio = gpio
+        r.pin=pin
         r.log=log
         r.hist = hist
         r.lastUpdate='00.00.0000 00:00:00'
@@ -44,10 +44,10 @@ class RelaisList:
 
     def findRelais(self, relaisName: str) -> Relais:
         for elem in self.relaisList:
-            if elem.Name == relaisName:
+            if elem.name == relaisName:
                 return elem    
         return None
 
     def ResetAll(self, switch, drucken, loggen) -> None:
         for elem in self.relaisList:
-            elem.Reset(switch, drucken, loggen)
+            elem.Set(switch, drucken, loggen)
