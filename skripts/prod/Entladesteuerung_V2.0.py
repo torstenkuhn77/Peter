@@ -40,8 +40,8 @@ try:
     # Routine bei Neustart
     # Logsatz bei Neustart in Logdatei schreiben
     
-    os.system('Clear') # Bildschirm löschen
-    TextString = 'Neustart Entladesteuerung  ' + Version + '  Initialisierung :'
+    os.system('clear') # Bildschirm löschen
+    TextString = f'Neustart Entladesteuerung  {Version}  Initialisierung :'
     logMain.log(logging.INFO, TextString)
 
     # Initialisierung / Reset aller Relais
@@ -63,13 +63,13 @@ try:
         Tagsteuerung          = False
         boost                 = False
         drucken               = False
-        loggen                = 'RelTab'   # Annahme : es wird gemäß Tabelle der Relais geloggt
-                                           # abweichend möglich : True = ja , False = nein  für alle Relais   
+        loggen                = True    # Annahme : es wird gemäß Tabelle der Relais geloggt
+                                        # abweichend möglich : True = ja , False = nein  für alle Relais   
         Schalter              = False
         
         iverarb = iverarb + 1 # Zähler Lauf
 
-        TextString = ' START Entladesteuerung    ' + str(iverarb) + '. Lauf -----------------------------------------'
+        TextString = f' START Entladesteuerung    {iverarb}. Lauf -----------------------------------------'
         logScreen.log(logging.INFO, TextString)
         
         if iverarb == 1 :  # Informationen zu Steuerungsparametern , Nachttarif etc. nur beim 1. Lauf
@@ -87,21 +87,15 @@ try:
             
             Ergebnis = sensorList.ReadAll(Typ)
 
-            TextString = 'Ergebnis Auslesen aller Sensoren '
-            TextString = TextString + Typ + ' ' + str(i_les_Sens) + '. Versuch '
+            TextString = 'Ergebnis Auslesen aller Sensoren {Typ} {i_les_Sens}. Versuch '
             
             if not Ergebnis:              # Fehler --> Nachlesen
                 if i_les_Sens == i_les_Sens_max :  # Nachlesen erfolglos max Anzahl Leseversuche erreicht
-                    TextString = 'Auslesen aller Sensoren '
-                    TextString = TextString + Typ + ' auch ' + str(i_les_Sens) + '. und letzter Versuch '
-                    TextString = TextString + ' erfolglos '
-                    
-                    logScreen.log(logging.ERROR, TextString)
-                    
+                    TextString = f'Auslesen aller Sensoren auch {i_les_Sens}. und letzter Versuch erfolglos '                   
+                    logScreen.log(logging.ERROR, TextString)                    
                     raise AssertionError("Auslesen der Temperaturwerte fehlgeschlagen.")
                 else :                             # x Mal Nachlesen , ONE-Wire Bus reset
-                    TextString = 'Warnung : Auslesen aller Sensoren '
-                    TextString = TextString + Typ + ' ' + str(i_les_Sens) + '. Versuch '
+                    TextString = f'Warnung : Auslesen aller Sensoren {Typ} {i_les_Sens}. Versuch'
                     TextString = TextString + ' fehlerhaft --> Wiederholung nach ONE-Wire reset'
                     
                     logScreen.log(logging.WARNING, TextString)
@@ -121,7 +115,7 @@ try:
                     
                         time.sleep(les_wait)        # Warten vor wieder Einschalten !
                         Schalter   = False          # False = GND wieder Einschalten
-                        relais.Set(RELAIS, Schalter, drucken, loggen)))
+                        relais.Set(RELAIS, Schalter, drucken, loggen)
                     
                     time.sleep (les_wait)       # Warten vor dem nächsten Auslesen !
                     # Ende ONE-Wire Bus zurücksetzen und neuer Versuch #########################
@@ -180,7 +174,7 @@ try:
         NachtFaktor = config['Parameter']['Zyklus']['NachtFak']
         
         if iverarb == 1 :  # Informationen zu Steuerungsparametern , Nachttarif etc. nur beim 1. Lauf
-            logScreen.log(logging.INFO, 19 * ' ' + f'(Zyklus Tag {wait} Nachtfaktor {NachtFaktor} Zyklus Nacht {wait * NachtFaktor}')
+            logScreen.log(logging.INFO, f'(Zyklus Tag {wait} Nachtfaktor {NachtFaktor} Zyklus Nacht {wait * NachtFaktor}')
         
         # Beginn Verarbeitung #########################################################################
         # Ausgabe Istwerte bei jedem Lauf unabhängig Raumheizung oder Warmwasserbereitung
@@ -192,7 +186,7 @@ try:
             SoLo_Bezug     = 0
             Solo_Erzeugung = 0                                  # Erzeugung und Bezug mit 0 angenommen
             logScreen.log(logging.WARNING, SoLo_Text)
-            logScreen.log(logging.WARNING, 20 * ' ' + 'Erzeugung und Bezug für weitere Verarbeitung mit 0 angenommen !')
+            logScreen.log(logging.WARNING, 'Erzeugung und Bezug für weitere Verarbeitung mit 0 angenommen !')
         else :                                                  # Solar-log Bezug und Erzeugung ermitteln
             GVS.SolarLog_Erzeugung = solarLog.Erzeugung # Abwärtskompatibilität
             GVS.SolarLog_Verbrauch = solarLog.Verbrauch
@@ -200,15 +194,15 @@ try:
             SoLo_Bezug = solarLog.Bezug
             Solo_Erzeugung = solarLog.Erzeugung
 
-            SoLo_Text = "Verbrauch " + str(GVS.SolarLog_Verbrauch)
+            SoLo_Text = f"Verbrauch {GVS.SolarLog_Verbrauch}"
             logSolarLog.log(logging.ERROR, SoLo_Text)
-            logSolarLog.log(logging.WARNING, " Erzeugung " + str(GVS.SolarLog_Erzeugung))
-            SoLo_Text = SoLo_Text + " Erzeugung " + str(GVS.SolarLog_Erzeugung)
+            logSolarLog.log(logging.WARNING, f" Erzeugung {GVS.SolarLog_Erzeugung}")
+            SoLo_Text = SoLo_Text + f" Erzeugung {GVS.SolarLog_Erzeugung}"
 
             if solarLog.Bezug >= 0 :
-                logSolarLog.log(logging.INFO, " Einspeisung " + str(solarLog.Bezug) + ' KW ')
+                logSolarLog.log(logging.INFO, f" Einspeisung {solarLog.Bezug} KW ")
             else :
-               logSolarLog.log(logging.ERROR, " Bezug " + str(solarLog.Bezug) + ' KW ')
+               logSolarLog.log(logging.ERROR, f" Bezug {solarLog.Bezug} KW")
 
             logSolarLog.log(logging.INFO, SoLo_Text + f' Tagbetrieb erst ab PVmin {PVmin}')
         
@@ -387,7 +381,7 @@ try:
             # Schaltvorgang durchführen
             relais = relaisList.findRelais(RELAIS)
             if not relais is None: 
-                relais.Set(Tagsteuerung, drucken, loggen))
+                relais.Set(Tagsteuerung, drucken, loggen)
           
             # Setzen Parameter zur Schaltung von Relais WK2 für die Funktion boost
             RELAIS       = 'WK2'            # Relais wie in Relais-Tabelle definiert

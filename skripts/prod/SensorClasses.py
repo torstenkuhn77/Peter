@@ -124,10 +124,10 @@ class SensorList:
     def ReadAll(self, Typ: str)->bool:   # aus Systembus alle Temperaturen zu allen Sensoren eines Typs auslesen
                                          # und in GVS.SensTab speichern und Rückgabe zum Druck aufbereiteter Textzeilen
     
-        Lesefehler = False
+        Ergebnis = True
 
         for sens in self.sensorList:             # Über alle Sensoren iterieren und
-            if sens.SensorType != Typ:
+            if sens.sensorType != Typ:
                 continue                                                                      
             
             # Temperaturwert des einzelnen Sensors auslesen
@@ -135,24 +135,24 @@ class SensorList:
             
             # GVS.Senstab aus Kompatibilitätsgründen aktualisieren (eigentlich nicht mehr nötig)
             if not sens.ReadTemperature():                    # Fehler beim Auslesen, aus Kompatibiliät wird GVS.SensTab noch aktualisiert
-                GVS.SensTab [sens.sensorName + '_Stp'] = sens.LastError
-                GVS.SensTab [sens.Sensorname + '_Tmp'] = sens.temperature
-                Lesefehler = True                             # --> mindestens ein Lesefehler aufgetreten
+                GVS.SensTab [sens.sensorName + '_Stp'] = sens.lastError
+                GVS.SensTab [sens.sensorName + '_Tmp'] = sens.temperature
+                Ergebnis = False                             # --> mindestens ein Lesefehler aufgetreten
             else :                                            # NEIN : nicht fehlerhaft ausgelesen
-                GVS.SensTab [sens.Sensorname + '_Stp'] = sens.LastUpdate
-                GVS.SensTab [sens.Sensorname + '_Tmp'] = sens.temperature
+                GVS.SensTab [sens.sensorName + '_Stp'] = sens.lastUpdate
+                GVS.SensTab [sens.sensorName + '_Tmp'] = sens.temperature
         
-        return Lesefehler  # Rückgabe zum Druck aufbereiteter Textzeilen      
+        return Ergebnis  # Rückgabe zum Druck aufbereiteter Textzeilen      
 
     def PrintResults(self, Typ: str)->None:
         logSensor = Logger().GetLogger("Sensor") # Console/File Ausgaben
 
         for sens in self.sensorList:             # Über alle Sensoren iterieren und Ergebnisse ausgeben
             Text = ""
-            if sens.SensorType != Typ:
+            if sens.sensorType != Typ:
                 continue 
-            if sens.LastError != "":
-                Text = Text + ' ' + sens.LastError                          # timestamp = Fehler ...
+            if sens.lastError != "":
+                Text = Text + ' ' + sens.lastError                          # timestamp = Fehler ...
                 Text = Text + ' ' + sens.sensorName                         # Sensor
                 Text = Text + ' ' + '\n'                                    # neue Zeile
                 Text = Text + 20 * ' ' + sens.temperature                   # einrücken , Temperaturwert

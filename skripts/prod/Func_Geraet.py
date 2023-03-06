@@ -36,14 +36,14 @@ def pruef (Geraet,NT_Z_Start,NT_Z_Ende,G_Z_von,G_Z_bis,T_Z_von,T_Z_bis,T_Z_akt,G
         TextString =  'Fehler in Funktion Gerät.pruef : "' + Geraet + '" , nur "Kessel" oder "Boiler" zulässig'
         liste = [Schalt_Rel , Rel_Schalter , TextString]
         return (liste)
+    
     # Ausgabe Geraetetemperatur , Prüfung , ob Histerese ein / aus / bleibt
-    TextString = '- ' + Geraet + 'temperatur  oben ' + str(G_T_akt) + ' max ' + str(G_T_max) + ' min ' + str(G_T_min) 
-    TextString = TextString + ' Histerese ' + str(G_T_hist)
+    TextString = f'- {Geraet} Temperatur oben {G_T_akt} max {G_T_max} min {G_T_min} Histerese {G_T_hist}'
     # Prüfung Plausibilität der Ladezeiten und ob für Nachtladung Geraet einzuschalten ist               
     NT_Lad_Geraet = Func_NT_Ladung.pruef (NT_Z_Start,NT_Z_Ende,G_Z_von,G_Z_bis,T_Z_von,T_Z_bis,T_Z_akt,G_T_akt,G_T_max)
     TextString = TextString + '\n'                        # neue Zeile
     TextString = TextString + NT_Lad_Geraet
-    if   "-- Nachtladung      nicht" in NT_Lad_Geraet :   # Nachtladung nicht aktiv
+    if "-- Nachtladung      nicht" in NT_Lad_Geraet :     # Nachtladung nicht aktiv
         Schalt_Rel   = Rel_Geraet                         # Relais Geraet komplett abschalten
         Rel_Schalter = False                              # Relais Schalter aus
         # Entscheid , ob fǘr Direktladung Geraet eingeschaltet wird

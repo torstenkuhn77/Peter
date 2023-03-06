@@ -2,16 +2,13 @@
 
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
-from colorama import Fore 
-
 # Parameter :
 # NT_Zeit_Start,NT_Zeit_Ende  :  Start,Ende Niedertarifzeit
 # Geraetvon,Geraetbis         :  Start,Ende der Ladezeit des Gerätes
 # DTvon,DTbis,DTakt           :  Start,Ende Tagsteuerung , aktuelle Tageszeit
 # GeraeTakt,GeraeTmax         :  Temperatur des Gerätes aktuell,maximal
 
-def pruef (NT_Zeit_Start,NT_Zeit_Ende,Geraetvon,Geraetbis,DTvon,DTbis,DTakt,GeraeTakt,GeraeTmax) :          
+def pruef (NT_Zeit_Start, NT_Zeit_Ende, Geraetvon, Geraetbis, DTvon, DTbis, DTakt, GeraeTakt, GeraeTmax):          
     # Initialisierung
     Mitternacht      = '00:00'
     NT_Ladung_Geraet = False

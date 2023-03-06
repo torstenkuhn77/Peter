@@ -10,6 +10,9 @@ import urllib.request
 from urllib.error import URLError, HTTPError
 from dataclasses import dataclass, field
 import time
+import random
+from functools import wraps
+
 
 #   Beschreibung Solar-Log JSON Schnittstellendaten : ##################
 #   100 - LastUpdateTime
@@ -30,6 +33,16 @@ import time
 #   115 - Wh Summierter Gesamtverbrauch, alle Ver-bauchszähler
 #   116 - Wp Installierte Generatorleistung
 
+def ReadSolarlogStub(fn):        # wird als Decorator benutzt um künstliche Stromwerte 
+    @wraps(fn)                   # zum Debuggen ohne Solaranlage zu simulieren
+    def wrapper(self):
+        self.Verbrauch = round(random.uniform(1000.00, 4500.00), 2)
+        self.Erzeugung = round(random.uniform(500.00, 15000.00), 2)
+        self.Bezug = round(random.uniform(1000.00, 2000.00), 2)
+        self.SetLastUpdate()
+        return True
+    return wrapper
+
 @dataclass
 class SolarLog:
     ipAddress: str
@@ -43,6 +56,7 @@ class SolarLog:
     def __init__(self, ipAddr: str) -> None:
         self.ipAddress = ipAddr
 
+    @ReadSolarlogStub
     def Read(self)->bool:   # Daten vom Solar-Log einlesen und verarbeiten
         try:                # Update der JSON-Schnittstelle erfolgt alle 15 sec
             self.lastUpdate = time.strftime("%Y.%m.%d %H:%M:%S")
