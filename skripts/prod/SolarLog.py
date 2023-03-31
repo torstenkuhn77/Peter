@@ -12,7 +12,8 @@ from dataclasses import dataclass, field
 import time
 import random
 from functools import wraps
-
+import logging 
+from Logger import Logger
 
 #   Beschreibung Solar-Log JSON Schnittstellendaten : ##################
 #   100 - LastUpdateTime
@@ -36,6 +37,9 @@ from functools import wraps
 def ReadSolarlogStub(fn):        # wird als Decorator benutzt um künstliche Stromwerte 
     @wraps(fn)                   # zum Debuggen ohne Solaranlage zu simulieren
     def wrapper(self):
+        logSolarLog = Logger().GetLogger("SolarLog") # Console/File Ausgaben
+        logSolarLog.log(logging.WARNING, "logSolarLog: Decorator is active!!!")   
+             
         self.Verbrauch = round(random.uniform(1000.00, 4500.00), 2)
         self.Erzeugung = round(random.uniform(500.00, 15000.00), 2)
         self.Bezug = round(random.uniform(1000.00, 2000.00), 2)

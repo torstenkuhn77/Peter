@@ -12,6 +12,10 @@ from functools import wraps
 def ReadTemperatureStub(fn):        # wird als Decorator benutzt um künstliche Temperaturwerte 
     @wraps(fn)                      # zum Debuggen ohne Sensoren zu erzeugen
     def wrapper(self):
+
+        logSensor = Logger().GetLogger("Sensor") # Console/File Ausgaben
+        logSensor.log(logging.WARNING, "Sensor: Decorator is active!!!")
+
         self.temperature = round(random.uniform(10.00, 45.00), 2)
         self.SetLastUpdate()
         return True
@@ -161,4 +165,4 @@ class SensorList:
                 # Textzeilen OK fehlerfreie Sensoren aufbereiten
                 Text  = Text + ' ' + sens.sensorName                        # Sensor
                 Text  = Text + ' ' + sens.temperature + ' '                 # Temperaturwert in gleicher Zeile
-            logSensor.log(logging.Info, Text)
+            logSensor.log(logging.INFO, Text)
